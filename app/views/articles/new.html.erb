@@ -1,0 +1,9 @@
+<%= form_with model: @article, url:"/articles" do |form| %>
+  <p>タイトル</p>
+  <%= form.text_field :title %>
+  <p>本文</p>
+  <%= form.text_area :content %>
+  <p>公開する</p>
+  <%= form.check_box :open_flg %>
+  <%= form.submit %>
+<% end %>

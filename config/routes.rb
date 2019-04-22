@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   post "logout" => "users#logout"
   get "users/:username" => "users#show"
   post "users" => "users#create"
+
+  get "articles/new" => "articles#new"
+  post "articles" => "articles#create"
 end
