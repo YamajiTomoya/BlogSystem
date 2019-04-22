@@ -10,9 +10,10 @@ class UsersController < ApplicationController
         puts params[:username], params[:password]
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
-          redirect_to("/users/#{params[:username]}")
+            session[:user_id] = @user.id
+            redirect_to("/users/#{params[:username]}")
         else
-          render("login_form")
+            render("login_form")
         end
       end
 
