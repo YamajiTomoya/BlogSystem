@@ -4,9 +4,7 @@ class ArticlesController < ApplicationController
     
     def show
         @article = Article.find_by(id: params[:id])
-        puts @article.title
     end
-
 
     def new
     end
