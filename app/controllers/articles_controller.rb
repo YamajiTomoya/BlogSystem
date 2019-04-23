@@ -9,4 +9,16 @@ class ArticlesController < ApplicationController
         end
         puts article.errors.full_messages
     end
+
+    def edit
+
+    end
+
+    def update
+    
+    end
+
+    def delete
+        
+    end
 end
