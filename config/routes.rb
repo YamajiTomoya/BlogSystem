@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   get "articles/new" => "articles#new"
   post "articles" => "articles#create"
   get "articles/:id/edit" => "articles#edit"
-  patch "articles/:id" => "ariticles#update"
+  patch "articles/:id" => "articles#update"
   delete "articles/:id" => "articles#delete"
 end
