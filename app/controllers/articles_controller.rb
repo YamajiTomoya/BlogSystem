@@ -40,9 +40,15 @@ class ArticlesController < ApplicationController
         @article = Article.find_by(id: params[:id])
         puts @article.title
         puts @current_user.id
-        if @current_user.id != @article.user_id
-            user = User.find_by(id: @article.user_id)
-            redirect_to("/users/#{user.username}")
+        # 非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
+        if @current_user
+            if @current_user.id != @article.user_id
+                user = User.find_by(id: @article.user_id)
+                redirect_to("/users/#{user.username}")
+            end
+        else
+            redirect_to("/signup")
         end
+        
     end
 end
