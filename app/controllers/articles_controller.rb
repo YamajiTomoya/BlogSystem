@@ -2,6 +2,12 @@ class ArticlesController < ApplicationController
     before_action :authenticate_user, {only: [:new, :create]}
     before_action :ensure_current_user, {only: [:edit, :update, :delete]}
     
+    def show
+        @article = Article.find_by(id: params[:id])
+        puts @article.title
+    end
+
+
     def new
     end
 

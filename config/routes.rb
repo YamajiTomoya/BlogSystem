@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "users/:username" => "users#show"
   post "users" => "users#create"
 
+  get "articles/:id" => "articles#show"
   get "articles/new" => "articles#new"
   post "articles" => "articles#create"
   get "articles/:id/edit" => "articles#edit"
