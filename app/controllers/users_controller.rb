@@ -21,16 +21,18 @@ class UsersController < ApplicationController
       end
 
     def create
-        puts "This is create"
-        puts "username:", params[:username]
-        puts "password", params[:password]
-        user = User.new(username: params[:username], password: params[:password])
-        if user.save
-            puts "save successed!"
-            session[:user_id] = user.id
-            redirect_to("/users/#{user.username}")
+        puts params[:username]
+        if params[:password] == params[:password_confirm]
+            user = User.new(username: params[:username], password: params[:password], email: params[:email])
+            if user.save
+                puts "save successed!"
+                session[:user_id] = user.id
+                redirect_to("/users/#{user.username}")
+            end
+        else
+            render("users/signup")
         end
-        puts user.errors.full_messages
+        
     end
 
     def show

@@ -2,7 +2,11 @@
 <%= form_with model: @user, url: "users" do |form| %>
   <p>ユーザー名</p>
   <%= form.text_field :username %>
+  <p>メールアドレス</p>
+  <%= form.email_field :email %>
   <p>パスワード</p>
   <%= form.password_field :password %>
+  <p>パスワード（確認）</p>
+  <%= form.password_field :password_confirm %>
   <%= form.submit %>
 <% end %>

@@ -2,23 +2,24 @@
   <% @articles.each do |article| %>
   　<% if @author_flg || article.open_flg %>
       <div class="article box17">
+        <%= link_to("/articles/#{article.id}") do %>
           <h3 class="title"><%= article.title %></h3>
           <p class="content">
             <% if article.content.size <= 150 %>
               <%= article.content%>
             <% else %>
-              <%= article.content.slice(0, 150) + "..."%>
+              <%= article.content.slice(0, Ï150) + "..."%>
             <% end %>
-          </p>
+          </p>Ï
+        <% end %>Ï
+        
           <div class="article_menus">
             <% if @author_flg %>
               <%= link_to("Edit", "/articles/#{article.id}/edit") %>
               <%= link_to("Delete", "/articles/#{article.id}", method: :delete) %>
             <% end %>
-            <%= link_to("More", "/articles/#{article.id}")%>
           </div>
       </div>
     <% end %>
   <% end %>
 </div>
-
