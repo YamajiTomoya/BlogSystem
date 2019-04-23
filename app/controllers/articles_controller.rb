@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
     
     def show
         @article = Article.find_by(id: params[:id])
+        @comments = Comment.where(article_id: params[:id])
     end
 
     def new
@@ -43,8 +44,8 @@ class ArticlesController < ApplicationController
         comment = Comment.new(content: params[:content], user_id: @current_user.id, article_id: params[:id])
         if comment.save
             puts "commented!"
+            redirect_back(fallback_location: "/articles/#{params[:id]}")
         end
-        puts comment.errors.full_messages
     end
 
     def ensure_current_user
