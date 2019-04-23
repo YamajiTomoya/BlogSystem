@@ -1,5 +1,14 @@
 <p>これ is ユーザのページ</p>
 <% @articles.each do |article| %>
-  <p><%= article.title %></p>
-  <p><%= article.content %></p>
+　<% if @user.id == @current_user.id || article.open_flg %>
+    <div>
+        <p><%= article.title %></p>
+        <p><%= article.content %></p>
+        <% if @user.id == @current_user.id %>
+        <%= link_to("編集", "/articles/#{article.id}/edit") %>
+        <%= link_to("削除", "/articles/#{article.id}", method: :delete) %>
+        <% end %>
+    </div>
+  <% end %>
+  
 <% end %>
