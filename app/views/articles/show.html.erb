@@ -1,20 +1,24 @@
-<p><%= @article.title %></p>
-<p><%= simple_format(@article.content) %></p>
+<div class="container">
+  <div class="article">
+    <h3 class="title"><%= @article.title %></p>
+    <p ><%= simple_format(@article.content) %></p>
+  </div>
+  <% if @current_user %>
+    <%= form_with model: @comment, url:"/articles/#{@article.id}/create_comment" do |form| %>
+      <p>コメント</p>
+      <%= form.text_field :content %>
+      <%= form.submit %>
+    <% end %>
+    <% @comments.zip(@deletable_flags).each do |comment, deletable_flag| %>
+      <p>
+        <%= comment.content %>
+        <% if deletable_flag %>
+          <%= link_to("削除", "/articles/#{comment.id}/delete_comment", method: :delete) %>
+        <% end %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>コメントするならログインしてください！</p>
+  <% end %>
+</div>
 
-<% if @current_user %>
-  <%= form_with model: @comment, url:"/articles/#{@article.id}/create_comment" do |form| %>
-    <p>コメント</p>
-    <%= form.text_field :content %>
-    <%= form.submit %>
-  <% end %>
-  <% @comments.zip(@deletable_flags).each do |comment, deletable_flag| %>
-    <p>
-      <%= comment.content %>
-      <% if deletable_flag %>
-        <%= link_to("削除", "/articles/#{comment.id}/delete_comment", method: :delete) %>
-      <% end %>
-    </p>
-  <% end %>
-<% else %>
-  <p>コメントするならログインしてください！</p>
-<% end %>
