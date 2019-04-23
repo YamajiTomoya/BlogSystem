@@ -37,9 +37,10 @@ class UsersController < ApplicationController
         puts "params", params[:username]
         @user = User.find_by(username: params[:username])
         @articles = Article.where(user_id: @user.id)
+        @author_flg = false
         # 執筆者は全ての記事を見れますが、非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
         if @current_user
-            if @current_user.id == @user
+            if @current_user.id == @user.id
                 @author_flg = true
             end
         end
