@@ -8,10 +8,6 @@
     text-align: center;
 }
 
-.article {
-    border: 3px solid black;
-}
-
 .title {
     text-align: left;
     margin: 3px 8px 0;
@@ -24,4 +20,37 @@
     text-align: left;
     font-size: 11px;
     opacity: 0.7;
+}
+
+.article_menus {
+    margin-top: 5px;
+    margin-right: 12px;
+    text-align: right;
+    font-size: 5px;
+}
+
+.article{
+    margin-top: 15px;
+    position: relative;
+    padding: 0.5em 1.5em;
+    border-top: solid 2px black;
+    border-bottom: solid 2px black;
+}
+
+.article:before, .article:after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: -webkit-calc(100% + 20px);
+    height: calc(100% + 20px);
+    background-color: black;
+}
+
+.article:before {
+    left: 10px;
+}
+
+.article:after {
+    right: 10px;
 }
