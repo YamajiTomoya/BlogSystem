@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-    before_action :ensure_current_user, {only: [:update, :delete]}
+    before_action :authenticate_user, {only: [:new, :create]}
+    before_action :ensure_current_user, {only: [:edit, :update, :delete]}
     
     def new
     end
