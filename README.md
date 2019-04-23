@@ -1,24 +1,8 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ruby on Rails課題１のブログシステムです。
+【課題要件】
+    -ユーザーごとにブログを持てる
+    -記事ごとに公開・非公開の設定ができる
+    -コメントができる
+    -記事の管理者のみ編集・削除ができる
+    -自分が書いた記事・コメントした記事一覧が見れ、そこから編集ができる
