@@ -27,8 +27,10 @@ class UsersController < ApplicationController
         user = User.new(username: params[:username], password: params[:password])
         if user.save
             puts "save successed!"
+            session[:user_id] = user.id
             redirect_to("/users/#{user.username}")
         end
+        puts user.errors.full_messages
     end
 
     def show
