@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :authenticate_user, {only: [:new, :create]}
+    before_action :authenticate_user, {only: [:new, :create, :create_comment]}
     before_action :ensure_current_user, {only: [:edit, :update, :delete]}
     
     def show
@@ -39,6 +39,14 @@ class ArticlesController < ApplicationController
         redirect_to("/users/#{@current_user.username}")
     end
 
+    def create_comment
+        comment = Comment.new(content: params[:content], user_id: @current_user.id, article_id: params[:id])
+        if comment.save
+            puts "commented!"
+        end
+        puts comment.errors.full_messages
+    end
+
     def ensure_current_user
         @article = Article.find_by(id: params[:id])
         puts @article.title
@@ -51,7 +59,6 @@ class ArticlesController < ApplicationController
             end
         else
             redirect_to("/signup")
-        end
-        
+        end   
     end
 end

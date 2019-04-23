@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get "articles/:id/edit" => "articles#edit"
   patch "articles/:id" => "articles#update"
   delete "articles/:id" => "articles#delete"
+
+  post "articles/:id/comment" => "articles#create_comment" 
 end

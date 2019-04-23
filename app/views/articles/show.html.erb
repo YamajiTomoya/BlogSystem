@@ -1,2 +1,8 @@
 <p><%= @article.title %></p>
 <p><%= @article.content %></p>
+
+<%= form_with model: @comment, url:"/articles/#{@article.id}/comment" do |form| %>
+  <p>コメント</p>
+  <%= form.text_field :content %>
+  <%= form.submit %>
+<% end %>
