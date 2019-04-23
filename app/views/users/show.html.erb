@@ -1,15 +1,22 @@
-<p>これ is ユーザのページ</p>
-<% @articles.each do |article| %>
-　<% if @author_flg || article.open_flg %>
-    <div>
-        <p><%= article.title %></p>
-        <p><%= article.content.slice(0, 10) + "..."%></p>
-        <%= link_to("続きを読む", "/articles/#{article.id}")%>
-        <% if @author_flg %>
-        <%= link_to("編集", "/articles/#{article.id}/edit") %>
-        <%= link_to("削除", "/articles/#{article.id}", method: :delete) %>
-        <% end %>
-    </div>
+<div class="container">
+  <% @articles.each do |article| %>
+  　<% if @author_flg || article.open_flg %>
+      <div class="article">
+          <h3 class="title"><%= article.title %></h3>
+          <p class="content">
+            <% if article.content.size <= 165 %>
+              <%= article.content%>
+            <% else %>
+              <%= article.content.slice(0, 165) + "..."%>
+            <% end %>
+          </p>
+          <%= link_to("続きを読む", "/articles/#{article.id}")%>
+          <% if @author_flg %>
+          <%= link_to("編集", "/articles/#{article.id}/edit") %>
+          <%= link_to("削除", "/articles/#{article.id}", method: :delete) %>
+          <% end %>
+      </div>
+    <% end %>
   <% end %>
+</div>
 
-<% end %>

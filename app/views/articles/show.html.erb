@@ -1,5 +1,5 @@
 <p><%= @article.title %></p>
-<p><%= @article.content %></p>
+<p><%= simple_format(@article.content) %></p>
 
 <% if @current_user %>
   <%= form_with model: @comment, url:"/articles/#{@article.id}/create_comment" do |form| %>

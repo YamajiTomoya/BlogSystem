@@ -1,3 +1,27 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+    margin: auto;
+    width: 67%;
+    text-align: center;
+}
+
+.article {
+    border: 3px solid black;
+}
+
+.title {
+    text-align: left;
+    margin: 3px 8px 0;
+    font-size: 24px;
+    opacity: 0.9;
+}
+
+.content {
+    margin: 0 12px 0;
+    text-align: left;
+    font-size: 11px;
+    opacity: 0.7;
+}
