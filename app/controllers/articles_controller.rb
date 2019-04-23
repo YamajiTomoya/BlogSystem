@@ -7,7 +7,10 @@ class ArticlesController < ApplicationController
         @comments = Comment.where(article_id: params[:id])
         @deletable_flags = []
         @comments.each do |comment|
-            @deletable_flags.push(@current_user.id == comment.user_id || @current_user.id == @article.user_id)
+            if @current_user
+                @deletable_flags.push(@current_user.id == comment.user_id || @current_user.id == @article.user_id)
+            end
+            
         end
     end
 
