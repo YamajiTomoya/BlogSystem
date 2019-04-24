@@ -4,7 +4,6 @@ class Article < ApplicationRecord
 
     validates :title, {presence: true}
     validates :content, {presence: true}
-    # REVIEW: boolean型はfalseを入れようとしても空で入ろうとする?
-    # validates :open_flg, {presence: true}  
+    validates :status, {presence: true}  
     validates :user_id, {presence: true}
 end

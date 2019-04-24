@@ -1,10 +1,16 @@
 <h1>Write Article</h1>
-<%= form_with model: @article, url: articles_path do |form| %>
-<p>タイトル</p>
-<%= form.text_field :title %>
-<p>本文</p>
-<%= form.text_area :content %>
-<p>公開 <%= form.radio_button :status, 10 %> </p>
-<p>非公開 <%= form.radio_button :status, 20 %> </p>
+<% @article.errors.full_messages.each do |message| %>
+　 <div class="form-error">
+　   <%= message %>
+　 </div>
+<% end %>
+<%= form_with model: @article, url: articles_path, local: true do |form| %>
+<p>Title</p>
+<%= form.text_field :title, value: @title %>
+<p>Content</p>
+<%= form.text_area :content, value: @content %>
+<p>Status</p>
+<p>public <%= form.radio_button :status, 10 %> </p>
+<p>private <%= form.radio_button :status, 20 %> </p>
 <%= form.submit %>
 <% end %>

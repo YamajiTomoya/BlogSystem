@@ -3,9 +3,9 @@ class ArticlesController < ApplicationController
     before_action :ensure_current_user, only: [:edit, :update, :delete]
     
     def index
-        # createやupdateにブラウザバック等で帰ると不具合が起きるため、直前のページに戻るようにしています。
-        path = Rails.application.routes.recognize_path(request.referer)
-        redirect_back(fallback_location: path)
+        # createやupdateにブラウザバック等で帰ると不具合が起きるため、マイページに戻るようにしています。
+        # TODO: 本当は直前のページに戻る方がいい。が、リダイレクトループに入る危険性もある。ちょっと後回し。
+        redirect_to(user_page_path(@current_user.username))
     end
 
     def show
