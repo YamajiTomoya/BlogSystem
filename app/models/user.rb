@@ -5,5 +5,6 @@ class User < ApplicationRecord
 
     validates :username, {presence: true, uniqueness: true}
     validates :email, {presence: true, uniqueness: true}
-    validates :password, {presence: true, length: { minimum: 10 }}
+    validates :password, {allow_blank: true, presence: true, length: { minimum: 10 }}
 end
+

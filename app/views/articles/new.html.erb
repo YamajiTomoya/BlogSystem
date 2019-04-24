@@ -4,6 +4,7 @@
 　   <%= message %>
 　 </div>
 <% end %>
+
 <%= form_with model: @article, url: articles_path, local: true do |form| %>
 <p>Title</p>
 <%= form.text_field :title, value: @title %>

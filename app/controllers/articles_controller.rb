@@ -41,6 +41,8 @@ class ArticlesController < ApplicationController
         @article.status = params[:article][:status]
         if @article.save
             redirect_to(user_page_path(@current_user.username), notice: "編集しました。")
+        else
+            render("articles/edit") 
         end
     end
 

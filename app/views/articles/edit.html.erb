@@ -1,10 +1,17 @@
 <h1>Edit Article</h1>
-<%= form_with model: @article, url: article_path(@article.id), method: :patch do |form| %>
-  <p>タイトル</p>
-  <%= form.text_field :title %>
-  <p>本文</p>
-  <%= form.text_area :content %>
-  <p>公開する</p>
-  <%= form.check_box :open_flg %>
-  <%= form.submit %>
+<% @article.errors.full_messages.each do |message| %>
+　 <div class="form-error">
+  　 <%= message %>
+  　 </div>
+<% end %>
+
+<%= form_with model: @article, url: article_path(@article.id), local: true, method: :patch do |form| %>
+<p>Title</p>
+<%= form.text_field :title %>
+<p>Content</p>
+<%= form.text_area :content %>
+<p>Status</p>
+<p>public <%= form.radio_button :status, 10 %> </p>
+<p>private <%= form.radio_button :status, 20 %> </p>
+<%= form.submit %>
 <% end %>

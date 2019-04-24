@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
     def login
         @user = User.find_by(username: params[:username])
-        
         # 暗号化されたパスワードと検証
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
@@ -24,15 +23,16 @@ class UsersController < ApplicationController
 
     def create
         if params[:user][:password] == params[:user][:password_confirm]
-            user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
-            if user.save
+            @user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
+            if @user.save
                 session[:user_id] = user.id
-                redirect_to("/users/#{user.username}", notice: "登録しました。")
+                redirect_to(user_page_path(user.username), notice: "登録しました。")
             end
         else
-            flash[:notice] = "パスワードが一致していません。"
-            render("users/signup")
+            @user = User.new
+            @error_message = "パスワードが一致していません。"
         end
+        render("users/signup")
         
     end
 
