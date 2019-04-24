@@ -11,7 +11,7 @@
       <div class="article box17">
         <%= link_to(article_path(article.id)) do %>
           <h3 class="title"><%= article.title %></h3>
-          <!-- 長い本文は途中までしか表示しない -->
+          <%# 長い本文は途中までしか表示しない %>
           <p class="content">
             <% if article.content.size <= 150 %>
               <%= article.content%>
