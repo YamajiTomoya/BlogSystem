@@ -56,8 +56,14 @@ class ArticlesController < ApplicationController
 
     def delete_comment
         comment = Comment.find_by(id: params[:id])
-        comment.destroy
-        redirect_back(fallback_location: "/articles/#{params[:id]}")
+        # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
+        if @current_user
+            article = Article.find_by(id: comment.article_id)
+            if @current_user.id == comment.user_id || @current_user.id == article.user_id
+                comment.destroy
+                redirect_back(fallback_location: "/articles/#{params[:id]}")
+            end
+        end
     end
 
     def ensure_current_user
