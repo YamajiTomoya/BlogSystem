@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
     def show
         @article = Article.find_by(id: params[:id])
         @comments = Comment.where(article_id: params[:id])
+        puts @comments
         @deletable_flags = []
         @comments.each do |comment|
             if @current_user
@@ -53,6 +54,9 @@ class ArticlesController < ApplicationController
             puts "commented!"
             redirect_back(fallback_location: "/articles/#{params[:id]}")
         end
+        puts "create_comment"
+        puts params
+        puts comment.errors.full_messages
     end
 
     def delete_comment

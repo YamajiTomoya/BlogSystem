@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
     belongs_to :user
-    #has_many :comment, dependent: :destroy
+    has_many :comment, dependent: :destroy
+
     validates :title, {presence: true}
     validates :content, {presence: true}
     # REVIEW: boolean型はfalseを入れようとしても空で入ろうとする?
