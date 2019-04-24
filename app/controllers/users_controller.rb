@@ -11,14 +11,13 @@ class UsersController < ApplicationController
 
     def login
         @user = User.find_by(username: params[:username])
+        
         # 暗号化されたパスワードと検証
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            flash[:notice] = "ログインしました。"
-            redirect_to("/users/#{params[:username]}")
+            redirect_to("/users/#{params[:username]}", notice: "ログインしました。")
         else
-            # TODO: error_massageが表示されてない
-            @error_message = "ユーザー名またはパスワードが間違っています。"
+            flash[:notice] = "ユーザー名またはパスワードが間違っています。"
             render("users/login_form")
         end
       end
@@ -28,12 +27,10 @@ class UsersController < ApplicationController
             user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
             if user.save
                 session[:user_id] = user.id
-                flash[:notice] = "登録しました。"
-                redirect_to("/users/#{user.username}")
+                redirect_to("/users/#{user.username}", notice: "登録しました。")
             end
         else
-            # TODO: error_massageが表示されてない
-            @error_message = "パスワードが一致ていません。"
+            flash[:notice] = "パスワードが一致していません。"
             render("users/signup")
         end
         
@@ -53,7 +50,6 @@ class UsersController < ApplicationController
 
     def logout
         session[:user_id] = nil
-        flash[:notice] = "ログアウトしました。"
-        redirect_to("/login")
+        redirect_to("/login", notice: "ログアウトしました。")
       end
 end

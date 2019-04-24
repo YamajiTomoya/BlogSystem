@@ -20,8 +20,7 @@ class ArticlesController < ApplicationController
     def create
         article = Article.new(title: params[:title], content: params[:content], open_flg: params[:open_flg], user_id: @current_user.id)
         if article.save
-            flash[:notice] = "記事を作成しました。"
-            redirect_to("/users/#{@current_user.username}")
+            redirect_to("/users/#{@current_user.username}", notice: "記事を作成しました。")
         end
     end
 
@@ -35,16 +34,14 @@ class ArticlesController < ApplicationController
         @article.content = params[:article][:content]
         @article.open_flg = params[:article][:open_flg]
         if @article.save
-            flash[:notice] = "編集しました。"
-            redirect_to("/users/#{@current_user.username}")
+            redirect_to("/users/#{@current_user.username}", notice: "編集しました。")
         end
     end
 
     def delete
         @article = Article.find_by(id: params[:id])
         @article.destroy
-        flash[:notice] = "削除しました。"
-        redirect_to("/users/#{@current_user.username}")
+        redirect_to("/users/#{@current_user.username}", notice: "削除しました。")
     end
 
     def create_comment
@@ -72,12 +69,10 @@ class ArticlesController < ApplicationController
         if @current_user
             if @current_user.id != @article.user_id
                 user = User.find_by(id: @article.user_id)
-                flash[:notice] = "権限がありません。"
-                redirect_to("/users/#{user.username}")
+                redirect_to("/users/#{user.username}", notice: "権限がありません。")
             end
         else
-            flash[:notice] = "ログインしていません。"
-            redirect_to("/signup")
+            redirect_to("/signup", notice: "ログインしていません。")
         end   
     end
 end
