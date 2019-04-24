@@ -1,9 +1,9 @@
 <div class="container">
   <h1>
       <% if @user.id == @current_user.id %>
-        マイページ
+        My page
       <% else %>
-        <%= @user.username %>のページ</h2>
+        <%= @user.username %>'s page</h2>
       <% end %>
 
   <% @articles.each do |article| %>
