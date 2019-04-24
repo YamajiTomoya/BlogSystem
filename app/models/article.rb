@@ -3,7 +3,7 @@ class Article < ApplicationRecord
     #has_many :comment, dependent: :destroy
     validates :title, {presence: true}
     validates :content, {presence: true}
-    # REVIEW: boolean型はfalseを入れようとしても空で入ろうとするっぽい？
+    # REVIEW: boolean型はfalseを入れようとしても空で入ろうとする?
     # validates :open_flg, {presence: true}  
     validates :user_id, {presence: true}
 end
