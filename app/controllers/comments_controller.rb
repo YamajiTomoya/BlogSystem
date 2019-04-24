@@ -8,12 +8,12 @@ class CommentsController < ApplicationController
     end
 
     def delete
-        comment = Comment.find_by(id: params[:id])
+        comment = Comment.find(params[:id])
         # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
         unless @current_user
             return
         end
-        article = Article.find_by(id: comment.article_id)
+        article = Article.find(comment.article_id)
         if @current_user.id == comment.user_id || @current_user.id == article.user_id
             comment.destroy
             redirect_back(fallback_location: "/articles/#{params[:id]}")

@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
     before_action :ensure_current_user, only: [:edit, :update, :delete]
     
     def show
-        @article = Article.find_by(id: params[:id])
+        @article = Article.find(params[:id])
         @comments = Comment.where(article_id: params[:id])
     end
 
@@ -18,11 +18,11 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find_by(id: params[:id])
+        @article = Article.find(params[:id])
     end
 
     def update
-        @article = Article.find_by(id: params[:id])
+        @article = Article.find(params[:id])
         @article.title = params[:article][:title]
         @article.content = params[:article][:content]
         @article.open_flg = params[:article][:open_flg]
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     end
 
     def delete
-        @article = Article.find_by(id: params[:id])
+        @article = Article.find(params[:id])
         @article.destroy
         redirect_to("/users/#{@current_user.username}", notice: "削除しました。")
     end
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
     private
 
     def ensure_current_user
-        @article = Article.find_by(id: params[:id])
+        @article = Article.find(params[:id])
         unless @current_user
             redirect_to("/signup", notice: "ログインしていません。")
             return
