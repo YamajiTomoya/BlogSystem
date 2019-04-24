@@ -1,4 +1,4 @@
-<p>これ is ログインフォーム</p>
+<h1>Login</h1>
 <%= form_with model: @user, local: true, url: "/login", method: :post do |form| %>
   <p>ユーザー名</p>
   <%= form.text_field :username %>

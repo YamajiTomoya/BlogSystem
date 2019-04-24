@@ -1,4 +1,4 @@
-<p>これ is edit画面</p>
+<h1>Edit Article</h1>
 <%= form_with model: @article, url:"/articles/#{@article.id}", method: :patch do |form| %>
   <p>タイトル</p>
   <%= form.text_field :title %>
