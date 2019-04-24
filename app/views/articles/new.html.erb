@@ -1,10 +1,10 @@
 <p>これ is 新規記事</p>
 <%= form_with model: @article, url:"/articles" do |form| %>
-  <p>タイトル</p>
-  <%= form.text_field :title %>
-  <p>本文</p>
-  <%= form.text_area :content %>
-  <p>公開する</p>
-  <%= form.check_box :open_flg %>
-  <%= form.submit %>
+<p>タイトル</p>
+<%= form.text_field :title %>
+<p>本文</p>
+<%= form.text_area :content %>
+<p>公開 <%= form.radio_button :status, 10 %> </p>
+<p>非公開 <%= form.radio_button :status, 20 %> </p>
+<%= form.submit %>
 <% end %>

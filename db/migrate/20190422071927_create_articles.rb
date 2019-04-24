@@ -3,7 +3,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
     create_table :articles do |t|
       t.string :title
       t.string :content
-      t.boolean :open_flg, default: false
+      t.integer :status
       t.string :author
       t.timestamps
     end

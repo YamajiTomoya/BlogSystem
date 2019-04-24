@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        article = Article.new(title: params[:title], content: params[:content], open_flg: params[:open_flg], user_id: @current_user.id)
+        article = Article.new(title: params[:title], content: params[:content], status: params[:status], user_id: @current_user.id)
         if article.save
             redirect_to("/users/#{@current_user.username}", notice: "記事を作成しました。")
         end
@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
         @article.title = params[:article][:title]
         @article.content = params[:article][:content]
-        @article.open_flg = params[:article][:open_flg]
+        @article.status = params[:article][:status]
         if @article.save
             redirect_to("/users/#{@current_user.username}", notice: "編集しました。")
         end
