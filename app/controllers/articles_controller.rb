@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-    before_action :authenticate_user, {only: [:new, :create, :create_comment]}
-    before_action :ensure_current_user, {only: [:edit, :update, :delete]}
+    before_action :authenticate_user, only: [:new, :create, :create_comment]
+    before_action :ensure_current_user, only: [:edit, :update, :delete]
     
     def show
         @article = Article.find_by(id: params[:id])
