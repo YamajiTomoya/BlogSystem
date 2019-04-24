@@ -1,12 +1,21 @@
-<p>これ is サインアップ</p>
 <%= form_with model: @user, url: "users" do |form| %>
-  <p>ユーザー名</p>
-  <%= form.text_field :username %>
-  <p>メールアドレス</p>
-  <%= form.email_field :email %>
-  <p>パスワード(10文字以上)</p>
-  <%= form.password_field :password %>
-  <p>パスワード（確認）</p>
-  <%= form.password_field :password_confirm %>
-  <%= form.submit %>
+<!-- TODO: errorメッセージが出ていません。-->
+<% if @error_message %>
+<%= @error_message %>
+<% end %>
+<% @user.errors.full_messages.each do |message| %>
+　 <div class="form-error">
+      <%= message %>
+    </div>
+<% end %>
+
+<p>ユーザー名</p>
+<%= form.text_field :username %>
+<p>メールアドレス</p>
+<%= form.email_field :email %>
+<p>パスワード(10文字以上)</p>
+<%= form.password_field :password %>
+<p>パスワード（確認）</p>
+<%= form.password_field :password_confirm %>
+<%= form.submit %>
 <% end %>

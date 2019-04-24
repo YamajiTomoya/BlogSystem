@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BlogSystem</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>BlogSystem</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <header>
-      <h1 id="logo">BlogSystem</h1>
-      <ul class="header-menus">
-        <% if @current_user %>
-          <li>
-            <%= link_to("Logout", "/logout", {method: :post}) %>
-          </li>
-          <li>
-            <%= link_to("Write", "/articles/new") %>
-          </li>
-          <li>
-            <%= link_to(@current_user.username, "/users/#{@current_user.username}") %>
-          <li>
-            
-          </li>
-        <% else %>
-          <li>
-            <%= link_to("Login", "/login") %>
-          </li>
-          <li>
-            <%=  link_to("Register", "/signup") %>
-          </li>
-        <% end %>  
-      </ul>
-   </header>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <header>
+    <h1 id="logo">BlogSystem</h1>
+    <ul class="header-menus">
+      <% if @current_user %>
+      <li>
+        <%= link_to("Logout", "/logout", {method: :post}) %>
+      </li>
+      <li>
+        <%= link_to("Write", "/articles/new") %>
+      </li>
+      <li>
+        <%= link_to(@current_user.username, "/users/#{@current_user.username}") %>
+      <li>
+
+      </li>
+      <% else %>
+      <li>
+        <%= link_to("Login", "/login") %>
+      </li>
+      <li>
+        <%=  link_to("Register", "/signup") %>
+      </li>
+      <% end %>
+    </ul>
+  </header>
+  <% if flash[:notice] %>
+  <div class="flash">
+    <%= flash[:notice] %> 
+  <% end %>  
     <%= yield %>
-  </body>
+</body>
+
 </html>

@@ -3,40 +3,43 @@ class UsersController < ApplicationController
     before_action :forbid_login_user, {only: [:signup, :create, :login, :login_form]}
 
     def signup
-        puts "This is signup."
+        @user = User.new
     end
 
-    def login_form
+    def login_forms
     end
 
     def login
-        puts params[:username], params[:password]
         @user = User.find_by(username: params[:username])
+        # 暗号化されたパスワードと検証
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
+            flash[:notice] = "ログインしました。"
             redirect_to("/users/#{params[:username]}")
         else
-            render("login_form")
+            # TODO: error_massageが表示されてない
+            @error_message = "ユーザー名またはパスワードが間違っています。"
+            render("users/login_form")
         end
       end
 
     def create
-        puts params[:username]
-        if params[:password] == params[:password_confirm]
-            user = User.new(username: params[:username], password: params[:password], email: params[:email])
+        if params[:user][:password] == params[:user][:password_confirm]
+            user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
             if user.save
-                puts "save successed!"
                 session[:user_id] = user.id
+                flash[:notice] = "登録しました。"
                 redirect_to("/users/#{user.username}")
             end
         else
+            # TODO: error_massageが表示されてない
+            @error_message = "パスワードが一致ていません。"
             render("users/signup")
         end
         
     end
 
     def show
-        puts "params", params[:username]
         @user = User.find_by(username: params[:username])
         @articles = Article.where(user_id: @user.id)
         @author_flg = false
@@ -46,11 +49,11 @@ class UsersController < ApplicationController
                 @author_flg = true
             end
         end
-            
     end
 
     def logout
         session[:user_id] = nil
+        flash[:notice] = "ログアウトしました。"
         redirect_to("/login")
       end
 end

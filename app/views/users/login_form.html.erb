@@ -1,4 +1,7 @@
 <p>これ is ログインフォーム</p>
+<% if @error_message %>
+<%= @error_message %>
+<% end %>
 <%= form_with model: @user do |form| %>
   <p>ユーザー名</p>
   <%= form.text_field :username %>
