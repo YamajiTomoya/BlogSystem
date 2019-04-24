@@ -51,6 +51,6 @@ class UsersController < ApplicationController
 
     def logout
         session[:user_id] = nil
-        redirect_to("/login", notice: "ログアウトしました。")
+        redirect_to("/", notice: "ログアウトしました。")
       end
 end

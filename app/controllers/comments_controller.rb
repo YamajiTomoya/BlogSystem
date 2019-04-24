@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
         comment = Comment.find(params[:id])
         # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
         unless @current_user
