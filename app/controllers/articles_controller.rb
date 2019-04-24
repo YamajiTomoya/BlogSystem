@@ -54,25 +54,24 @@ class ArticlesController < ApplicationController
     def delete_comment
         comment = Comment.find_by(id: params[:id])
         # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
-        if @current_user
-            article = Article.find_by(id: comment.article_id)
-            if @current_user.id == comment.user_id || @current_user.id == article.user_id
-                comment.destroy
-                redirect_back(fallback_location: "/articles/#{params[:id]}")
-            end
+        unless @current_user
+            return
+        end
+        article = Article.find_by(id: comment.article_id)
+        if @current_user.id == comment.user_id || @current_user.id == article.user_id
+            comment.destroy
+            redirect_back(fallback_location: "/articles/#{params[:id]}")
         end
     end
 
     def ensure_current_user
         @article = Article.find_by(id: params[:id])
-        # 非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
-        if @current_user
-            if @current_user.id != @article.user_id
-                user = User.find_by(id: @article.user_id)
-                redirect_to("/users/#{user.username}", notice: "権限がありません。")
-            end
-        else
+        unless @current_user
             redirect_to("/signup", notice: "ログインしていません。")
-        end   
+            return
+        end
+        if @current_user.id != @article.user_id
+            redirect_to("/users/#{@current_user.username}", notice: "権限がありません。")
+        end
     end
 end

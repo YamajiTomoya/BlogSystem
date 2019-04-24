@@ -41,10 +41,11 @@ class UsersController < ApplicationController
         @articles = Article.where(user_id: @user.id)
         @author_flg = false
         # 執筆者は全ての記事を見れますが、非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
-        if @current_user
-            if @current_user.id == @user.id
-                @author_flg = true
-            end
+        unless @current_user
+            return
+        end
+        if @current_user.id == @user.id
+            @author_flg = true
         end
     end
 
