@@ -1,5 +1,5 @@
 <h1>Signup</h1>
-<%= form_with model: @user, url: "users" do |form| %>
+<%= form_with model: @user, url: users_path do |form| %>
 <!-- TODO: errorメッセージが出ていません。-->
 <% if @error_message %>
 <%= @error_message %>

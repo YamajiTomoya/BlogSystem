@@ -1,5 +1,5 @@
 <h1>Write Article</h1>
-<%= form_with model: @article, url:"/articles" do |form| %>
+<%= form_with model: @article, url: articles_path do |form| %>
 <p>タイトル</p>
 <%= form.text_field :title %>
 <p>本文</p>

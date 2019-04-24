@@ -8,13 +8,13 @@ class ApplicationController < ActionController::Base
     
     def authenticate_user
       if @current_user == nil
-        redirect_to("/login", notice: "ログインが必要です")
+        redirect_to(login_form_path, notice: "ログインが必要です")
       end
     end
 
     def forbid_login_user
       if @current_user
-        redirect_to("/users/#{@current_user.username}", notice: "すでにログインしています")
+        redirect_to(user_page_path(@current_user.username), notice: "すでにログインしています")
       end
     end
 end

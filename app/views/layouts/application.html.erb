@@ -16,22 +16,20 @@
     <ul class="header-menus">
       <% if @current_user %>
       <li>
-        <%= link_to("Logout", "/logout", {method: :post}) %>
+        <%= link_to("Logout", logout_path, {method: :post}) %>
       </li>
       <li>
-        <%= link_to("Write", "/articles/new") %>
+        <%= link_to("Write", new_article_path) %>
       </li>
       <li>
-        <%= link_to(@current_user.username, "/users/#{@current_user.username}") %>
-      <li>
-
+        <%= link_to(@current_user.username, user_page_path(@current_user.username)) %>
       </li>
       <% else %>
       <li>
-        <%= link_to("Login", "/") %>
+        <%= link_to("Login", login_form_path) %>
       </li>
       <li>
-        <%=  link_to("Signup", "/signup") %>
+        <%=  link_to("Signup", signup_path) %>
       </li>
       <% end %>
     </ul>

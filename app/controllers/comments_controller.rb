@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     def create
         comment = Comment.new(content: params[:content], user_id: @current_user.id, article_id: params[:id])
         if comment.save
-            redirect_back(fallback_location: "/articles/#{params[:id]}")
+            redirect_back(fallback_location: article_path(params[:id]))
         end
     end
 
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
         article = Article.find(comment.article_id)
         if @current_user.id == comment.user_id || @current_user.id == article.user_id
             comment.destroy
-            redirect_back(fallback_location: "/articles/#{params[:id]}")
+            redirect_back(fallback_location: article_path(params[:id]))
         end
     end
 end

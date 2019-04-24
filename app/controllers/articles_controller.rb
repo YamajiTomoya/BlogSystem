@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     def create
         article = Article.new(title: params[:title], content: params[:content], status: params[:status], user_id: @current_user.id)
         if article.save
-            redirect_to("/users/#{@current_user.username}", notice: "記事を作成しました。")
+            redirect_to(user_page_path(@current_user.username), notice: "記事を作成しました。")
         end
     end
 
@@ -27,14 +27,14 @@ class ArticlesController < ApplicationController
         @article.content = params[:article][:content]
         @article.status = params[:article][:status]
         if @article.save
-            redirect_to("/users/#{@current_user.username}", notice: "編集しました。")
+            redirect_to(user_page_path(@current_user.username), notice: "編集しました。")
         end
     end
 
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
-        redirect_to("/users/#{@current_user.username}", notice: "削除しました。")
+        redirect_to(user_page_path(@current_user.username), notice: "削除しました。")
     end
 
     private
@@ -42,11 +42,11 @@ class ArticlesController < ApplicationController
     def ensure_current_user
         @article = Article.find(params[:id])
         unless @current_user
-            redirect_to("/signup", notice: "ログインしていません。")
+            redirect_to(login_form_path, notice: "権限がありません。")
             return
         end
         if @current_user.id != @article.user_id
-            redirect_to("/users/#{@current_user.username}", notice: "権限がありません。")
+            redirect_to(user_page_path(@current_user.username), notice: "権限がありません。")
         end
     end
 end
