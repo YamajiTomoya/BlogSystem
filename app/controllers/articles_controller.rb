@@ -49,12 +49,4 @@ class ArticlesController < ApplicationController
             redirect_to("/users/#{@current_user.username}", notice: "権限がありません。")
         end
     end
-
-    def deletable?(comment)
-        # あるコメントに対して、削除可能かどうか判定します
-        article = Article.find(params[:id])
-        return @current_user.id == comment.user_id || @current_user.id == article.user_id
-    end
-
-    helper_method :deletable?
 end

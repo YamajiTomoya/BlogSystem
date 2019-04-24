@@ -12,7 +12,7 @@
     <% @comments.each do |comment| %>
       <p>
         <%= comment.content %>
-        <% if deletable?(comment) %>
+        <% if comment.deletable?(@current_user) %>
           <%= link_to("削除", "/articles/#{comment.id}/comment", method: :delete) %>
         <% end %>
       </p>
