@@ -1,17 +1,10 @@
 class ArticlesController < ApplicationController
-    before_action :authenticate_user, only: [:new, :create, :create_comment]
+    before_action :authenticate_user, only: [:new, :create]
     before_action :ensure_current_user, only: [:edit, :update, :delete]
     
     def show
         @article = Article.find_by(id: params[:id])
         @comments = Comment.where(article_id: params[:id])
-        # コメント削除権限の有無を各コメントに対してフラグで持たせます
-        @deletable_flags = []
-        @comments.each do |comment|
-            if @current_user
-                @deletable_flags.push(@current_user.id == comment.user_id || @current_user.id == @article.user_id)
-            end
-        end
     end
 
     def new
@@ -44,25 +37,7 @@ class ArticlesController < ApplicationController
         redirect_to("/users/#{@current_user.username}", notice: "削除しました。")
     end
 
-    def create_comment
-        comment = Comment.new(content: params[:content], user_id: @current_user.id, article_id: params[:id])
-        if comment.save
-            redirect_back(fallback_location: "/articles/#{params[:id]}")
-        end
-    end
-
-    def delete_comment
-        comment = Comment.find_by(id: params[:id])
-        # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
-        unless @current_user
-            return
-        end
-        article = Article.find_by(id: comment.article_id)
-        if @current_user.id == comment.user_id || @current_user.id == article.user_id
-            comment.destroy
-            redirect_back(fallback_location: "/articles/#{params[:id]}")
-        end
-    end
+    private
 
     def ensure_current_user
         @article = Article.find_by(id: params[:id])
@@ -74,4 +49,12 @@ class ArticlesController < ApplicationController
             redirect_to("/users/#{@current_user.username}", notice: "権限がありません。")
         end
     end
+
+    def deletable?(comment)
+        # あるコメントに対して、削除可能かどうか判定します
+        article = Article.find(params[:id])
+        return @current_user.id == comment.user_id || @current_user.id == article.user_id
+    end
+
+    helper_method :deletable?
 end

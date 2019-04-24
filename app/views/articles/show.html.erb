@@ -4,16 +4,16 @@
     <p ><%= simple_format(@article.content) %></p>
   </div>
   <% if @current_user %>
-    <%= form_with model: @comment, url:"/articles/#{@article.id}/create_comment" do |form| %>
+    <%= form_with model: @comment, url:"/articles/#{@article.id}/comment" do |form| %>
       <p>コメント</p>
       <%= form.text_field :content %>
       <%= form.submit %>
     <% end %>
-    <% @comments.zip(@deletable_flags).each do |comment, deletable_flag| %>
+    <% @comments.each do |comment| %>
       <p>
         <%= comment.content %>
-        <% if deletable_flag %>
-          <%= link_to("削除", "/articles/#{comment.id}/delete_comment", method: :delete) %>
+        <% if deletable?(comment) %>
+          <%= link_to("削除", "/articles/#{comment.id}/comment", method: :delete) %>
         <% end %>
       </p>
     <% end %>
