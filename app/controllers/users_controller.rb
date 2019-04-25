@@ -30,8 +30,6 @@ class UsersController < ApplicationController
         else
             render("users/signup")
         end
-        
-        
     end
 
     def show
