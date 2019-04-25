@@ -22,17 +22,15 @@ class UsersController < ApplicationController
       end
 
     def create
-        if params[:user][:password] == params[:user][:password_confirm]
-            @user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
-            if @user.save 
-                session[:user_id] = user.id
-                redirect_to(user_page_path(user.username), notice: "登録しました。")
-            end
+        @user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password],
+                        password_confirmation: params[:user][:password_confirmation])
+        if @user.save 
+            session[:user_id] = @user.id
+            redirect_to(user_page_path(@user.username), notice: "登録しました。")
         else
-            @user = User.new
-            @error_message = "パスワードが一致していません。"
+            render("users/signup")
         end
-        render("users/signup")
+        
         
     end
 
