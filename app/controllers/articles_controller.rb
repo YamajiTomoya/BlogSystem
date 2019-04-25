@@ -3,9 +3,16 @@ class ArticlesController < ApplicationController
     before_action :ensure_current_user, only: [:edit, :update, :delete]
     
     def index
-        # createやupdateにブラウザバック等で帰ると不具合が起きるため、マイページに戻るようにしています。
-        # TODO: 本当は直前のページに戻る方がいい。が、リダイレクトループに入る危険性もある。ちょっと後回し。
-        redirect_to(user_page_path(@current_user.username))
+        @user = User.find_by(username: params[:username])
+        @articles = Article.where(user_id: @user.id)
+        @author_flg = false
+        # 執筆者は全ての記事を見れますが、非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
+        unless @current_user
+            return
+        end
+        if @current_user.id == @user.id
+            @author_flg = true
+        end
     end
 
     def show

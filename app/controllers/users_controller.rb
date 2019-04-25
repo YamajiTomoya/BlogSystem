@@ -32,16 +32,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find_by(username: params[:username])
-        @articles = Article.where(user_id: @user.id)
-        @author_flg = false
-        # 執筆者は全ての記事を見れますが、非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
-        unless @current_user
-            return
-        end
-        if @current_user.id == @user.id
-            @author_flg = true
-        end
+        redirect_to(user_page_path(params[:username]))
     end
 
     def logout
