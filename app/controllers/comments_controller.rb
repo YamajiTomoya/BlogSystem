@@ -2,9 +2,10 @@ class CommentsController < ApplicationController
   before_action :authenticate_user, only: [:new, :create, :create_comment]
 
   def create
-    comment = Comment.new(comment_params.merge(user_id: @current_user.id, article_id: params[:id]))
+    puts params
+    comment = Comment.new(comment_params.merge(user_id: @current_user.id, article_id: params[:article_id]))
     if comment.save
-      redirect_back(fallback_location: article_path(params[:id]))
+      redirect_back(fallback_location: article_path(params[:article_id]))
     end
   end
 
@@ -17,7 +18,7 @@ class CommentsController < ApplicationController
     article = Article.find(comment.article_id)
     if @current_user.id == comment.user_id || @current_user.id == article.user_id
       comment.destroy
-      redirect_back(fallback_location: article_path(params[:id]))
+      redirect_back(fallback_location: article_path(article.id))
     end
   end
 
