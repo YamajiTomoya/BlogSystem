@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user, only: [:new, :create, :create_comment]
 
   def create
-    comment = Comment.new(content: params[:content], user_id: @current_user.id, article_id: params[:id])
+    comment = Comment.new(comment_params.merge(user_id: @current_user.id, article_id: params[:id]))
     if comment.save
       redirect_back(fallback_location: article_path(params[:id]))
     end
@@ -19,5 +19,11 @@ class CommentsController < ApplicationController
       comment.destroy
       redirect_back(fallback_location: article_path(params[:id]))
     end
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content)
   end
 end
