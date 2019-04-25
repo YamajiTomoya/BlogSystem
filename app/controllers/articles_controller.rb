@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
 
     def show
         @article = Article.find(params[:id])
+        @comment = @article.comments.build
         @comments = Comment.where(article_id: params[:id])
     end
 
@@ -22,7 +23,7 @@ class ArticlesController < ApplicationController
         @title = params[:article][:title]
         @content = params[:article][:content]
 
-        @article = Article.new(title: params[:article][:title], content: params[:article][:content], status: params[:article][:status], user_id: @current_user.id)
+        @article = Article.new(article_params.merge(user_id: @current_user.id))
         if @article.save
             redirect_to(user_page_path(@current_user.username), notice: "記事を作成しました。")
         else
@@ -36,9 +37,7 @@ class ArticlesController < ApplicationController
 
     def update
         @article = Article.find(params[:id])
-        @article.title = params[:article][:title]
-        @article.content = params[:article][:content]
-        @article.status = params[:article][:status]
+        @article.update(article_params)
         if @article.save
             redirect_to(user_page_path(@current_user.username), notice: "編集しました。")
         else
@@ -63,5 +62,9 @@ class ArticlesController < ApplicationController
         if @current_user.id != @article.user_id
             redirect_to(user_page_path(@current_user.username), notice: "権限がありません。")
         end
+    end
+
+    def article_params
+        params.require(:article).permit(:title, :content, :status)
     end
 end

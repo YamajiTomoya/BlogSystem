@@ -22,8 +22,7 @@ class UsersController < ApplicationController
       end
 
     def create
-        @user = User.new(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password],
-                        password_confirmation: params[:user][:password_confirmation])
+        @user = User.new(user_params)
         if @user.save 
             session[:user_id] = @user.id
             redirect_to(user_page_path(@user.username), notice: "登録しました。")
@@ -48,5 +47,11 @@ class UsersController < ApplicationController
     def logout
         session[:user_id] = nil
         redirect_to("/", notice: "ログアウトしました。")
-      end
+    end
+
+    private
+    
+    def user_params
+        params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    end
 end
