@@ -1,9 +1,9 @@
 class Article < ApplicationRecord
-    belongs_to :user
-    has_many :comment, dependent: :destroy
+  belongs_to :user
+  has_many :comment, dependent: :destroy
 
-    validates :title, {presence: true}
-    validates :content, {presence: true}
-    validates :status, {presence: true}  
-    validates :user_id, {presence: true}
+  validates :title, { presence: true }
+  validates :content, { presence: true }
+  validates :status, { presence: true }
+  validates :user_id, { presence: true }
 end
