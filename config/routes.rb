@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
   root "users#login_form", as: :login_form
   get "signup" => "users#signup"
   post "login" => "users#login"
@@ -15,4 +15,9 @@ Rails.application.routes.draw do
   end
 
   delete "comment/:id" => "comments#destroy", as: :comment_delete
+
+  # letter_opener設定
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  end
 end
