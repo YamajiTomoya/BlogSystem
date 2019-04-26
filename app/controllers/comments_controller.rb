@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user, only: [:new, :create, :create_comment]
+  before_action :authenticate_user!, only: [:new, :create, :create_comment]
 
   def create
     puts params
