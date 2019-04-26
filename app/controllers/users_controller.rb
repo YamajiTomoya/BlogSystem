@@ -12,8 +12,6 @@ class UsersController < ApplicationController
     def login
         @user = User.find_by(username: params[:username])
         # 暗号化されたパスワードと検証
-        puts @user
-        puts @user.encrypted_password, params[:password]
         if @user && @user.valid_password?(params[:password])
             session[:user_id] = @user.id
             redirect_to("/users/#{params[:username]}", notice: "ログインしました。")
