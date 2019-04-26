@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     
     def signup
         @user = User.new
+        
     end
 
     def login_forms
@@ -32,6 +33,8 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to(user_page_path(@user.username), notice: "登録しました。")
         else
+            puts "------------------------------------------"
+            puts @user.errors.full_messages
             render("users/signup")
         end
     end
