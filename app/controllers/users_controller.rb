@@ -20,7 +20,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to("/users/#{params[:username]}", notice: "ログインしました。")
         else
-            flash[:notice] = "ユーザー名またはパスワードが間違っています。"
+            @error_message = "ユーザー名またはパスワードが間違っています。"
             render("users/login_form")
         end
       end

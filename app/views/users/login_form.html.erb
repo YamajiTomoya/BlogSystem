@@ -1,9 +1,14 @@
 <h1>Login</h1>
+<% if @error_message %>
+<div class="alert alert-danger" role="alert">
+  <%= @error_message %>
+</div>
+<% end %>
 <%= form_with model: @user, local: true, url: login_path, method: :post do |form| %>
-  <p>ユーザー名</p>
-  <%= form.text_field :username %>
-  <p>パスワード</p>
-  <%= form.password_field :password %>
-  <%= form.submit %>
+<p>ユーザー名</p>
+<%= form.text_field :username %>
+<p>パスワード</p>
+<%= form.password_field :password %>
+<%= form.submit %>
 <% end %>
 <%= link_to("再設定", new_user_password_path) %>
