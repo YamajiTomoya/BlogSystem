@@ -37,11 +37,17 @@
       <% end %>
     </ul>
   </header>
+  <% if flash[:error] %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash[:error] %>
+  </div>
+  <% end %>
+
   <% if flash[:notice] %>
   <div class="flash">
     <%= flash[:notice] %>
-    <% end %>
-    <%= yield %>
+  <% end %>
+  <%= yield %>
 </body>
 
 </html>
