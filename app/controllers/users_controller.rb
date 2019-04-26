@@ -2,6 +2,9 @@ class UsersController < ApplicationController
     before_action :authenticate_user!, only: [:logout]
     before_action :forbid_login_user, only: [:signup, :create, :login, :login_form]
     
+    def index
+        
+    end
     def signup
         @user = User.new
         
