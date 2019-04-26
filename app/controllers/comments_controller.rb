@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     puts params
-    comment = Comment.new(comment_params.merge(user_id: @current_user.id, article_id: params[:article_id]))
+    comment = Comment.new(comment_params.merge(user_id: current_user.id, article_id: params[:article_id]))
     if comment.save
       redirect_back(fallback_location: article_path(params[:article_id]))
     end
@@ -12,11 +12,11 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
-    unless @current_user
+    unless current_user
       return
     end
     article = Article.find(comment.article_id)
-    if @current_user.id == comment.user_id || @current_user.id == article.user_id
+    if @current_user.id == comment.user_id || current_user.id == article.user_id
       comment.destroy
       redirect_back(fallback_location: article_path(article.id))
     end

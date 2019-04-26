@@ -7,10 +7,10 @@ class ArticlesController < ApplicationController
         @articles = Article.where(user_id: @user.id)
         @author_flg = false
         # 執筆者は全ての記事を見れますが、非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
-        unless @current_user
+        unless current_user
             return
         end
-        if @current_user.id == @user.id
+        if current_user.id == @user.id
             @author_flg = true
         end
     end
@@ -30,9 +30,9 @@ class ArticlesController < ApplicationController
         @title = params[:article][:title]
         @content = params[:article][:content]
 
-        @article = Article.new(article_params.merge(user_id: @current_user.id))
+        @article = Article.new(article_params.merge(user_id: current_user.id))
         if @article.save
-            redirect_to(user_page_path(@current_user.username), notice: "記事を作成しました。")
+            redirect_to(user_page_path(current_user.username), notice: "記事を作成しました。")
         else
             render("articles/new")
         end
@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
         @article.update(article_params)
         if @article.save
-            redirect_to(user_page_path(@current_user.username), notice: "編集しました。")
+            redirect_to(user_page_path(current_user.username), notice: "編集しました。")
         else
             render("articles/edit") 
         end
@@ -55,19 +55,19 @@ class ArticlesController < ApplicationController
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
-        redirect_to(user_page_path(@current_user.username), notice: "削除しました。")
+        redirect_to(user_page_path(current_user.username), notice: "削除しました。")
     end
 
     private
 
     def ensure_current_user
         @article = Article.find(params[:id])
-        unless @current_user
+        unless current_user
             redirect_to(login_form_path, notice: "権限がありません。")
             return
         end
         if @current_user.id != @article.user_id
-            redirect_to(user_page_path(@current_user.username), notice: "権限がありません。")
+            redirect_to(user_page_path(current_user.username), notice: "権限がありません。")
         end
     end
 

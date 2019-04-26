@@ -3,7 +3,7 @@
     <h3 class="title"><%= @article.title %></p>
     <p ><%= simple_format(@article.content) %></p>
   </div>
-  <% if @current_user %>
+  <% if current_user %>
     <%= form_with model: [@article, @article.comments.build] do |form| %>
       <p>コメント</p>
       <%= form.text_field :content %>
@@ -12,7 +12,7 @@
     <% @comments.each do |comment| %>
       <p>
         <%= comment.content %>
-        <% if comment.deletable?(@current_user) %>
+        <% if comment.deletable?(current_user) %>
           <%= link_to("削除",comment_delete_path(comment.id), method: :delete) %>
         <% end %>
       </p>

@@ -5,7 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
   
-  has_many :articles
+  has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
   # deviseでemailを不必要にする
   def email_required?
     false
