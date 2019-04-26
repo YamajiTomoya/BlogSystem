@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
     before_action :authenticate_user, only: [:logout]
     before_action :forbid_login_user, only: [:signup, :create, :login, :login_form]
-
+    
     def signup
         @user = User.new
     end
 
     def login_forms
+        # devise側でログインしたことになっていれば解除
+        if current_user
+            sign_out current_user
+        end
     end
 
     def login
@@ -37,7 +41,8 @@ class UsersController < ApplicationController
 
     def logout
         session[:user_id] = nil
-        redirect_to("/", notice: "ログアウトしました。")
+        sign_out current_user
+        redirect_to(login_form_path, notice: "ログアウトしました。")
     end
 
     private
