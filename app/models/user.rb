@@ -4,6 +4,8 @@ class User < ApplicationRecord
   validates :username,uniqueness: true
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
+  
+  has_many :articles
   # deviseでemailを不必要にする
   def email_required?
     false

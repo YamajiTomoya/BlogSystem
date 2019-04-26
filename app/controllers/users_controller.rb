@@ -3,7 +3,9 @@ class UsersController < ApplicationController
     before_action :forbid_login_user, only: [:signup, :create, :login, :login_form]
     
     def index
-        
+        if current_user
+            redirect_to(user_page_path(current_user.username))
+        end
     end
     def signup
         @user = User.new
