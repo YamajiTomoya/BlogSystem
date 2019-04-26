@@ -22,7 +22,7 @@ class UsersController < ApplicationController
             redirect_to("/users/#{params[:username]}", notice: "ログインしました。")
         else
             @error_message = "ユーザー名またはパスワードが間違っています。"
-            render("users/login_form")
+            redirect_back(fallback_location: login_form_path)
         end
       end
 
