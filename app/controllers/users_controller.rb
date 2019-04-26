@@ -18,6 +18,7 @@ class UsersController < ApplicationController
         # 暗号化されたパスワードと検証
         if @user && @user.valid_password?(params[:password])
             session[:user_id] = @user.id
+            sign_in(@user) # devise側でもログインしていることにする
             redirect_to("/users/#{params[:username]}", notice: "ログインしました。")
         else
             @error_message = "ユーザー名またはパスワードが間違っています。"
