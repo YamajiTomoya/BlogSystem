@@ -17,9 +17,13 @@
  @import "bootstrap"; 
  
  html {
-     background-color: #FBFBFB
+     height: 100%;
+     background-color: #FBFBFB;
  }
 
+ body {
+     height: 100%;
+ }
  header{
      border-bottom: 2px solid black;
  }
