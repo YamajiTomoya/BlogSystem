@@ -1,22 +1,23 @@
 <div class="container">
   <div id="heading">
-  <h1>
-    <% if @user.id == current_user.id %>
-    My page
-    <% else %>
-    <%= @user.username %>'s page</h2>
-    <% end %>
-  </h1>
+    <h1>
+      <% if @user.id == current_user.id %>
+      My page
+      <% else %>
+      <%= @user.username %>'s page</h2>
+      <% end %>
+    </h1>
   </div>
-    <% @articles.each do |article| %>
-    <% if @author_flg || article.status == 10 %>
-    <div class="card">
-      <%= link_to(article_path(article.id)) do %>
-      <div class="card-header">
-        <h3 class="title"><%= article.title %></h3>
-      </div>
-      <%# 長い本文は途中までしか表示しない %>
-      <div class="card-body">
+
+  <% @articles.each do |article| %>
+  <% if @author_flg || article.status == 10 %>
+  <div class="card">
+    <%= link_to(article_path(article.id)) do %>
+    <div class="card-header">
+      <h3 class="title"><%= article.title %></h3>
+    </div>
+    <%# 長い本文は途中までしか表示しない %>
+    <div class="card-body">
       <p class="content">
         <% if article.content.size <= 150 %>
         <%= article.content%>
@@ -25,23 +26,23 @@
         <% end %>
       </p>
       <% end %>
-      </div>
-      <div class="card-footer">
+    </div>
+    <div class="card-footer">
       <div class="article-list-menu">
-      <% if @author_flg %>
-        <%= link_to("Edit", edit_article_path(article.id)) %>
-        <%= link_to("Delete", article_path(article.id), method: :delete) %>
+        <% if @author_flg %>
+        <%= link_to("編集", edit_article_path(article.id)) %> &nbsp;
+        <%= link_to("削除", article_path(article.id), method: :delete) %>
         <% end %>
       </div>
       <div class="article-list-info">
-      <span>
-      created: <%= article.created_at.strftime("%Y-%m-%d %H:%M") %> &nbsp;
-      updated: <%= article.updated_at.strftime("%Y-%m-%d %H:%M")%> &nbsp;
-      Comment(<%= article.get_comment_num %>)
-      </span>
-      </div>
+        <span>
+          created: <%= article.created_at.strftime("%Y-%m-%d %H:%M") %> &nbsp;
+          updated: <%= article.updated_at.strftime("%Y-%m-%d %H:%M")%> &nbsp;
+          Comment(<%= article.get_comment_num %>)
+        </span>
       </div>
     </div>
-    <% end %>
-    <% end %>
+  </div>
+  <% end %>
+  <% end %>
 </div>
