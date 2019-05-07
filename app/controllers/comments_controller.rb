@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: article_path(params[:article_id]))
     end
   end
-
+  
   def edit
     @comment = Comment.find(params[:id])
   end
