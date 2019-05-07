@@ -1,24 +1,28 @@
 <div class="container">
   <div class="article">
     <h3 class="title"><%= @article.title %></p>
-    <p ><%= simple_format(@article.content) %></p>
+      <p><%= simple_format(@article.content) %></p>
   </div>
   <% if current_user %>
-    <%= form_with model: [@article, @article.comments.build] do |form| %>
-      <p>コメント</p>
-      <%= form.text_field :content %>
-      <%= form.submit %>
+  <div class="article"><%= form_with model: [@article, @article.comments.build] do |form| %>
+    <h3>Comments</h3>
+    <div id="comment-input"><%= form.text_area :content %></div>
+    <div id="comment-submit"><%= form.submit "投稿する" %></div>
     <% end %>
-    <% @comments.each do |comment| %>
+    <% @comments.each_with_index do |comment, i| %>
+    <div class="comment-content">
+      <p><%= "#{i + 1}: #{comment.content} " %></p>
       <p>
-        <%= comment.content %>
         <% if comment.deletable?(current_user) %>
-          <%= link_to("削除",comment_delete_path(comment.id), method: :delete) %>
+        <%= link_to("削除",comment_delete_path(comment.id), method: :delete) %>
         <% end %>
+        <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
       </p>
-    <% end %>
-  <% else %>
-    <p>コメントするならログインしてください！</p>
-  <% end %>
-</div>
 
+      </p>
+      <% end %>
+    </div>
+    <% else %>
+    <p>コメントするならログインしてください！</p>
+    <% end %>
+  </div>
