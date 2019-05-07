@@ -1,8 +1,8 @@
 <h1>Write Article</h1>
 <% @article.errors.full_messages.each do |message| %>
-　 <div class="form-error">
-　   <%= message %>
-　 </div>
+ <div class="form-error">
+    <%= message %>
+ </div>
 <% end %>
 
 <%= form_with model: @article, url: articles_path, local: true do |form| %>
