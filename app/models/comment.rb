@@ -3,11 +3,12 @@ class Comment < ApplicationRecord
     belongs_to :user
     belongs_to :article
 
+    def user
+        return User.find(self.user_id)
+    end
+
     def deletable?(current_user)
         # あるコメントに対して、削除可能かどうか判定します
-        puts current_user.id
-        puts self.user_id
-        puts self.article.id
         return current_user.id == self.user_id || current_user.id == self.article.id
     end
 end

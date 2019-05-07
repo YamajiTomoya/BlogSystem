@@ -11,8 +11,7 @@
     <% end %>
     <% @comments.each_with_index do |comment, i| %>
     <div class="comment-content">
-      <% comment_user = User.find(comment.user_id)%>
-      <p><%= link_to(comment_user.username, user_page_path(comment_user.username)) %></p>
+      <p><%= link_to(comment.user.username, user_page_path(comment.user.username)) %></p>
       <p><%= "#{i + 1}: #{comment.content} " %></p>
       <p>
         <% if comment.deletable?(current_user) %>
