@@ -1,0 +1,5 @@
+<%= form_with model: @comment, url: comment_path(@comment.id), local: true, method: :patch do |form| %>
+<p>Content</p>
+<%= form.text_area :content %>
+<%= form.submit %>
+<% end %>

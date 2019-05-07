@@ -10,19 +10,22 @@
     <div id="comment-submit"><%= form.submit "投稿する" %></div>
     <% end %>
     <% @comments.each_with_index do |comment, i| %>
-    <div class="comment-content">
+    <div id="comment-content" data-comment="<%= comment.id %>">
       <p><%= link_to(comment.user.username, user_page_path(comment.user.username)) %></p>
       <p><%= "#{i + 1}: #{comment.content} " %></p>
       <p>
+        <% if comment.poster?(current_user) %>
+        <%= link_to("編集", edit_comment_path(comment.id), remote: true) %>
+        <% end %>
         <% if comment.deletable?(current_user) %>
-        <%= link_to("削除",comment_delete_path(comment.id), method: :delete) %>
+        <%= link_to("削除", comment_path(comment.id), method: :delete) %>
         <% end %>
         <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
       </p>
-
       </p>
-      <% end %>
     </div>
+    <% end %>
+
     <% else %>
     <p>コメントするならログインしてください！</p>
     <% end %>

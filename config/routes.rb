@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     # comment[s]じゃないとform_withが動きません
     post "comments" => "comments#create"
   end
-
-  delete "comment/:id" => "comments#destroy", as: :comment_delete
+  
+  resources :comments, :only =>[
+    :edit, :update, :destroy
+  ]
 
   # letter_opener設定
   if Rails.env.development?

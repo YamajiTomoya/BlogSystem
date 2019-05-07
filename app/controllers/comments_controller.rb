@@ -9,6 +9,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    if @comment.save
+      redirect_back(fallback_location: article_path(params[:id]))
+    else
+      render("articles/show") 
+    end
+  end
+
   def destroy
     comment = Comment.find(params[:id])
     # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
