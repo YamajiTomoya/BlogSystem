@@ -1,5 +1,5 @@
-<%= form_with model: @comment, url: comment_path(@comment.id), local: true, method: :patch do |form| %>
-<p>Content</p>
-<%= form.text_area :content %>
-<%= form.submit %>
+<%= form_with model: @comment, url: comment_path(@comment.id), local: true, method: :patch, class: "form-group" do |form| %>
+<p>コメントの編集</p>
+<%= form.text_area :content, class: "form-control mx-auto"%>
+<%= form.submit class: "form-control mx-auto" %>
 <% end %>
