@@ -1,11 +1,13 @@
 <div class="container">
+  <div id="heading">
   <h1>
     <% if @user.id == current_user.id %>
     My page
     <% else %>
     <%= @user.username %>'s page</h2>
     <% end %>
-
+  </h1>
+  </div>
     <% @articles.each do |article| %>
     <% if @author_flg || article.status == 10 %>
     <div class="card">
