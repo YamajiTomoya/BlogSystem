@@ -14,11 +14,17 @@
   <div><%= form.submit "投稿する", class: "form-control mx-auto" %></div>
   <% end %>
 
+  <% @comment.errors.full_messages.each do |message| %>
+  <div class="form-error">
+    <%= message %>
+  </div>
+  <% end %>
+
   <% @comments.each_with_index do |comment, i| %>
   <div class="card">
     <div data-comment="<%= comment.id %>">
       <div class="card-header"><%= link_to(comment.user.username, user_page_path(comment.user.username)) %></div>
-      <div class="card-body"><%= "#{i + 1}: #{comment.content} " %></div>
+      <div class="card-body"><%= comment.content %></div>
       <div class="card-footer clearfix">
         <div class="comment-menu">
           <% if comment.poster?(current_user) %>

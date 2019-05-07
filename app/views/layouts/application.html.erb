@@ -46,8 +46,9 @@
   <% end %>
 
   <% if flash[:notice] %>
-  <div class="flash">
+  <div class="alert alert-success" role="alert">
     <%= flash[:notice] %>
+  </div>
   <% end %>
 
   <div class="container">

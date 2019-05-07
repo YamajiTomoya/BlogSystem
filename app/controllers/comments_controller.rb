@@ -2,11 +2,13 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :create_comment]
 
   def create
-    puts params
-    comment = Comment.new(comment_params.merge(user_id: current_user.id, article_id: params[:article_id]))
-    if comment.save
-      redirect_back(fallback_location: article_path(params[:article_id]))
+    @comment = Comment.new(comment_params.merge(user_id: current_user.id, article_id: params[:article_id]))
+    if @comment.save
+      flash[:notice] = "コメントを投稿しました。"
+    else
+      flash[:error] = "コメントを入力してください。"
     end
+    redirect_back(fallback_location: article_path(params[:article_id]))
   end
   
   def edit
@@ -17,10 +19,12 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
     if @comment.save
-      redirect_back(fallback_location: article_path(params[:id]))
+      flash[:notice] = "コメントを編集しました。"
     else
-      render("articles/show") 
+      flash[:error] = "コメントを入力してください。"
     end
+    redirect_back(fallback_location: article_path(params[:id]))
+    puts @comment.errors.full_messages
   end
 
   def destroy
@@ -32,7 +36,7 @@ class CommentsController < ApplicationController
     article = Article.find(comment.article_id)
     if @current_user.id == comment.user_id || current_user.id == article.user_id
       comment.destroy
-      redirect_back(fallback_location: article_path(article.id))
+      redirect_back(fallback_location: article_path(article.id), notice: "コメントを削除しました。")
     end
   end
 
