@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
 
     def deletable?(current_user)
         # あるコメントに対して、削除可能かどうか判定します
-        return current_user.id == self.user_id || current_user.id == self.article.id
+        return current_user.id == self.user_id || current_user.id == self.article.user_id
     end
 
     def poster?(current_user)
