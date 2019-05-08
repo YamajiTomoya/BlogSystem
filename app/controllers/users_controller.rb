@@ -29,7 +29,7 @@ class UsersController < ApplicationController
             sign_in(@user) # devise側でもログインしていることにする
             redirect_to("/users/#{params[:username]}", notice: "ログインしました。")
         else
-            flash[:error] = "ユーザー名またはパスワードが間違っています。"
+            flash.now[:error] = "ユーザー名またはパスワードが間違っています。"
             redirect_back(fallback_location: login_form_path)
         end
       end
