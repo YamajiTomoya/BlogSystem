@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
         @article.update(article_params)
         if @article.save
-            redirect_to(user_page_path(current_user.username), notice: "編集しました。")
+            redirect_to(user_page_path(current_user.username), notice: "記事を編集しました。")
         else
             render("articles/edit") 
         end
@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
-        redirect_to(user_page_path(current_user.username), notice: "削除しました。")
+        redirect_to(user_page_path(current_user.username), notice: "記事を削除しました。")
     end
 
     private
