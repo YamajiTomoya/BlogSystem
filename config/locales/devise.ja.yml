@@ -57,3 +57,8 @@ ja:
       not_saved:
         one: "エラーにより、この %{resource} を保存できません："
         other: "%{count} 個のエラーにより、この %{resource} を保存できません："
+      taken: "はすでに利用されています。"
+      blank: "が入力されていません。"
+      too_short: "は%{count}文字以上に設定して下さい。"
+      confirmation: "が正しくありません。"
+      
