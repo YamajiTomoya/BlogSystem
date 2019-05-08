@@ -9,7 +9,7 @@ ja:
     failure:
       already_authenticated: "既にログインしています。"
       inactive: "Your account is not activated yet."
-      invalid: "Invalid email or password."
+      invalid: "ユーザネームまたはパスワードが間違っています。"
       locked: "アカウントがロックされています。"
       last_attempt: "あなたのアカウントがロックされる前に、もう1つの試みを持っています。"
       not_found_in_database: "メールアドレスまたはパスワードが無効です。"
@@ -28,13 +28,13 @@ ja:
       success: "%{kind} から承認されました。"
     passwords:
       no_token: "このページにアクセスする事が出来ません。正しいURLでアクセスしている事を確認して下さい。"
-      send_instructions: "パスワードのリセット方法を数分以内にメールでご連絡します。"
+      send_instructions: "パスワード再設定用メールを送信しました。"
       send_paranoid_instructions: ""
       updated: "パスワードを変更しました。"
       updated_not_active: "パスワードを変更しました。"
     registrations:
       destroyed: "アカウントを削除しました。またのご利用をお待ちしております。"
-      signed_up: "アカウント登録を受け付けました。"
+      signed_up: "アカウントを登録しました。"
       signed_up_but_inactive: "アカウントは登録されていますが、アクティブになっていないため利用できません。"
       signed_up_but_locked: "アカウントは登録されていますが、ロックされているため利用できません。"
       signed_up_but_unconfirmed: "確認メールを登録したメールアドレス宛に送信しました。リンクを開いてアカウントを有効にして下さい。"

@@ -38,11 +38,12 @@
     </ul>
   </header>
 
-  <% if flash[:error] %>
   <div class="alert alert-danger" role="alert">
+    <span class="alert"><%= alert %></span>
+    <% if flash[:error] %>
     <%= flash[:error] %>
+    <% end %>
   </div>
-  <% end %>
 
   <% if flash[:notice] %>
   <div class="alert alert-success" role="alert">
