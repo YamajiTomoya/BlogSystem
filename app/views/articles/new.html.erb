@@ -1,12 +1,12 @@
-<div id="heading">
-   <h3>Write Article</h3>
-</div>
-
 <% @article.errors.full_messages.each do |message| %>
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger mx-auto" role="alert">
   <%= message %>
 </div>
 <% end %>
+
+<div class="heading">
+   <h3>Write Article</h3>
+</div>
 
 <%= form_with model: @article, url: articles_path, local: true, class: "form-group" do |form| %>
 <div class="write-form mx-auto">

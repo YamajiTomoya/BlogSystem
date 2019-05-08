@@ -39,15 +39,14 @@
   </header>
 
   <% if alert || flash[:error] %>
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-danger mx-auto" role="alert">
     <span class="alert"><%= alert %></span>
-    <br>
     <%= flash[:error] %>
   </div>
   <% end %>
   
   <% if flash[:notice] %>
-  <div class="alert alert-success" role="alert">
+  <div class="alert alert-success mx-auto" role="alert">
     <%= flash[:notice] %>
   </div>
   <% end %>

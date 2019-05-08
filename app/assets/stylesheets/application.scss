@@ -50,7 +50,12 @@ header ul {
     text-decoration: none;
 }
 
-#heading {
+.heading {
     margin: 30px 0 20px;
     border-bottom: 2px solid black;
+}
+
+.alert {
+    width: 80%;
+    margin: 10px;
 }

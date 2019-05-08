@@ -13,6 +13,7 @@
 }
 
 .card .content {
+    text-align: left;
     color: black;
     text-decoration: none;
     font-size: 16px;
@@ -51,19 +52,9 @@ textarea {
     width: 30%;
 }
 
-#article #title {
-    text-align: center;
-    font-size: 32px;
-    border-bottom: 2px solid black;
-}
-
-#article #content {
-    font-size: 18px;
-    border-bottom: 2px solid black;
-}
-
-#article #content p {
-    margin: 50px 0 5px;
+#content {
+    text-align: left;
+    font-size: 13px;
 }
 
 #comment form {
@@ -92,10 +83,12 @@ textarea {
 }
 
 #comment .card-header {
+    text-align: left;
     padding: 7px 13px;
 }
 
 #comment .card-body {
+    text-align: left;
     padding: 10px 15px;
     font-size: 15px;
 }

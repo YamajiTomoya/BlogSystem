@@ -1,45 +1,49 @@
-<div id="article">
-  <div id="title">
-    <%= @article.title %>
-  </div>
-  <div id="content">
-    <%= simple_format(@article.content) %>
-  </div>
+<div class="heading">
+  <h3><%= @article.title %></h3>
+</div>
+
+<div id="content">
+  <%= simple_format(@article.content) %>
 </div>
 <% if current_user %>
-<div id="comment">
-  <%= form_with model: [@article, @article.comments.build], class: "form-group mx-auto" do |form| %>
+<div class="heading">
   <h3>Comments</h3>
-  <div><%= form.text_area :content, class: "form-control mx-auto" %></div>
-  <div><%= form.submit "投稿する", class: "form-control mx-auto" %></div>
-  <% end %>
+</div>
 
-  <% @comment.errors.full_messages.each do |message| %>
-  <div class="form-error">
-    <%= message %>
-  </div>
-  <% end %>
+<%= form_with model: [@article, @article.comments.build], class: "form-group" do |form| %>
 
-  <% @comments.each_with_index do |comment, i| %>
-  <div class="card">
-    <div data-comment="<%= comment.id %>">
-      <div class="card-header"><%= link_to(comment.user.username, user_page_path(comment.user.username)) %></div>
-      <div class="card-body"><%= comment.content %></div>
-      <div class="card-footer clearfix">
-        <div class="comment-menu">
-          <% if comment.poster?(current_user) %>
-          <%= link_to("編集", edit_comment_path(comment.id), remote: true) %> &nbsp;
-          <% end %>
-          <% if comment.deletable?(current_user) %>
-          <%= link_to("削除", comment_path(comment.id), method: :delete) %>
-          <% end %>
-        </div>
-        <div class="comment-info">
-          updated: <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
-        </div>
+<div class="comment-form mx-auto">
+  <%= form.text_area :content, class: "form-control" %>
+</div>
+<div id="submit" class="mx-auto">
+  <%= form.submit "投稿する", class: "form-control" %>
+</div>
+<% end %>
+
+<% @comments.each_with_index do |comment, i| %>
+<div id="comment" class="card">
+  <div data-comment="<%= comment.id %>">
+    <div class="card-header">
+    <%= link_to(comment.user.username, user_page_path(comment.user.username)) %>
+    </div>
+    <div class="card-body">
+    <%= comment.content %>
+    </div>
+    <div class="card-footer clearfix">
+      <div class="comment-menu">
+        <% if comment.poster?(current_user) %>
+        <%= link_to("編集", edit_comment_path(comment.id), remote: true) %> &nbsp;
+        <% end %>
+        <% if comment.deletable?(current_user) %>
+        <%= link_to("削除", comment_path(comment.id), method: :delete) %>
+        <% end %>
+      </div>
+      <div class="comment-info">
+        updated: <%= comment.updated_at.strftime("%Y-%m-%d %H:%M") %>
       </div>
     </div>
   </div>
+</div>
 
   <% end %>
 
