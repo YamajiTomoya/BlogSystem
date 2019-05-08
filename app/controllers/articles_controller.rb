@@ -17,6 +17,10 @@ class ArticlesController < ApplicationController
 
     def show
         @article = Article.find(params[:id])
+        # 非公開設定されているなら、権限確認
+        if @article.status == 20
+            ensure_current_user
+        end
         @comment = @article.comments.build
         @comments = Comment.where(article_id: params[:id])
     end
@@ -62,11 +66,11 @@ class ArticlesController < ApplicationController
     def ensure_current_user
         @article = Article.find(params[:id])
         unless current_user
-            redirect_to(login_form_path, notice: "権限がありません。")
+            redirect_to(new_user_session_path, alert: "権限がありません。")
             return
         end
         if @current_user.id != @article.user_id
-            redirect_to(user_page_path(current_user.username), notice: "権限がありません。")
+            redirect_to(user_page_path(current_user.username), alert: "権限がありません。")
         end
     end
 
