@@ -1,24 +1,24 @@
-<div id="login">
-  <div id="heading">
-    <h2>Log In</h2>
-  </div>
+<div id="heading">
+  <h2>Log In</h2>
+</div>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-group") do |f| %>
-  <div class="field mx-auto">
-    <p>ユーザーネーム</p>
-    <%= f.text_field :username, autofocus: true, class: "form-control" %>
-  </div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-group") do |f| %>
+<div class="field mx-auto">
+  <p>ユーザーネーム</p>
+  <%= f.text_field :username, autofocus: true, class: "form-control" %>
+</div>
 
-  <div class="field mx-auto">
-    <p>パスワード</p>
-    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-  </div>
+<div class="field mx-auto">
+  <p>パスワード</p>
+  <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+</div>
 
-  <div id="submit" class="mx-auto" class="actions">
-    <%= f.submit "ログイン", class: "form-control" %>
-  </div>
-  <% end %>
+<div id="submit" class="mx-auto" class="actions">
+  <%= f.submit "ログイン", class: "form-control" %>
+</div>
+<% end %>
 
+<div id="bottom-menu">
   <p><%= link_to("サインアップ", new_user_registration_path) %></p>
   <p><%= link_to("パスワードを忘れた方はこちら", new_user_password_path) %></p>
 </div>
