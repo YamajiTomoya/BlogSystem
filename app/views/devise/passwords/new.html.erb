@@ -1,17 +1,20 @@
-<h2>パスワード再設定用メール送信フォーム</h2>
+<div id="heading">
+  <h3>パスワード再設定用メール送信フォーム</h3>
+</div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <p>メールアドレス</p>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "メールを送信" %>
-  </div>
+<% @user.errors.full_messages.each do |message| %>
+<div class="alert alert-danger" role="alert">
+  <%= message %>
+</div>
 <% end %>
 
-<p><%= link_to("ログイン", new_user_session_path) %></p>
-<p><%= link_to("サインアップ", new_user_registration_path) %></p>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class: "form-group") do |f| %>
+<div class="field mx-auto">
+  <p>メールアドレス</p>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+</div>
+
+<div id="submit" class="actions mx-auto">
+  <%= f.submit "再設定用メールを送信", class: "form-control" %>
+</div>
+<% end %>

@@ -1,23 +1,27 @@
-<h2>Change your password</h2>
+<div id="heading">
+  <h3>Reset your password</h3>
+</div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <p>新しいパスワード</p>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <p>新しいパスワード（確認）</p>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "パスワードを変更" %>
-  </div>
+<% @user.errors.full_messages.each do |message| %>
+<div class="alert alert-danger" role="alert">
+  <%= message %>
+</div>
 <% end %>
 
-<p><%= link_to("ログイン", new_user_session_path) %></p>
-<p><%= link_to("サインアップ", new_user_registration_path) %></p>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: "form-group") do |f| %>
+<%= f.hidden_field :reset_password_token %>
+
+<div class="field mx-auto">
+  <p>新しいパスワード（10文字以上）</p>
+  <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
+</div>
+
+<div class="field mx-auto">
+  <p>新しいパスワード（確認）</p>
+  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+</div>
+
+<div id="submit" class="actions mx-auto">
+  <%= f.submit "パスワードを再設定", class: "form-control" %>
+</div>
+<% end %>
