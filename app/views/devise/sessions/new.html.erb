@@ -1,18 +1,18 @@
 <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-group") do |f| %>
   <div class="field">
     <p>ユーザーネーム</p>
-    <%= f.text_field :username, autofocus: true %>
+    <%= f.text_field :username, autofocus: true, class: "form-control mx-auto" %>
   </div>
 
   <div class="field">
     <p>パスワード</p>
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control mx-auto" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= f.submit "ログイン", class: "form-control mx-auto" %>
   </div>
 <% end %>
 
