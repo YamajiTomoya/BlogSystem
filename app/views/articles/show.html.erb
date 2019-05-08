@@ -5,11 +5,12 @@
 <div id="content">
   <%= simple_format(@article.content) %>
 </div>
-<% if current_user %>
+
 <div class="heading">
   <h3>Comments</h3>
 </div>
 
+<% if current_user %>
 <%= form_with model: [@article, @article.comments.build], class: "form-group" do |form| %>
 
 <div class="comment-form mx-auto">
@@ -19,15 +20,18 @@
   <%= form.submit "投稿する", class: "form-control" %>
 </div>
 <% end %>
+<% else %>
+<p>コメントの投稿にはログインが必要です。</p>
+<% end %>
 
 <% @comments.each_with_index do |comment, i| %>
 <div id="comment" class="card">
   <div data-comment="<%= comment.id %>">
     <div class="card-header">
-    <%= link_to(comment.user.username, user_page_path(comment.user.username)) %>
+      <%= link_to(comment.user.username, user_page_path(comment.user.username)) %>
     </div>
     <div class="card-body">
-    <%= comment.content %>
+      <%= comment.content %>
     </div>
     <div class="card-footer clearfix">
       <div class="comment-menu">
@@ -44,9 +48,4 @@
     </div>
   </div>
 </div>
-
-  <% end %>
-
-  <% else %>
-  <p>コメントするならログインしてください！</p>
-  <% end %>
+<% end %>
