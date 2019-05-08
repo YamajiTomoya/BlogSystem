@@ -61,4 +61,4 @@ ja:
       blank: "が入力されていません。"
       too_short: "は%{count}文字以上に設定して下さい。"
       confirmation: "が正しくありません。"
-      
+      invalid: "の期限が切れています。"
