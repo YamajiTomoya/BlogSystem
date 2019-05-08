@@ -59,7 +59,6 @@ class ArticlesController < ApplicationController
     end
 
     private
-
     def ensure_current_user
         @article = Article.find(params[:id])
         unless current_user
