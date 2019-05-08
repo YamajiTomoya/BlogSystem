@@ -9,3 +9,10 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         reset_password_token: パスワードリセット権限
+    
+      atticle: 記事
+    attributes:
+      article:
+        title: タイトル
+        content: 本文
+        status: 公開設定

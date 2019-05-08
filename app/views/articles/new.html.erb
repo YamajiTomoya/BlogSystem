@@ -1,17 +1,29 @@
-<h1>Write Article</h1>
+<div id="heading">
+   <h3>Write Article</h3>
+</div>
+
 <% @article.errors.full_messages.each do |message| %>
- <div class="form-error">
-    <%= message %>
- </div>
+<div class="alert alert-danger" role="alert">
+  <%= message %>
+</div>
 <% end %>
 
-<%= form_with model: @article, url: articles_path, local: true do |form| %>
-<p>Title</p>
-<%= form.text_field :title, value: @title %>
-<p>Content</p>
-<%= form.text_area :content, value: @content %>
-<p>Status</p>
-<p>public <%= form.radio_button :status, 10 %> </p>
-<p>private <%= form.radio_button :status, 20 %> </p>
-<%= form.submit %>
+<%= form_with model: @article, url: articles_path, local: true, class: "form-group" do |form| %>
+<div class="write-form mx-auto">
+   <p>タイトル</p>
+   <%= form.text_field :title, value: @title, class: "form-control" %>
+</div>
+<div class="write-form mx-auto">
+   <p>本文</p>
+   <%= form.text_area :content, value: @content, class: "form-control", rows: 10 %>
+</div>
+<div class="mx-auto">
+   <p>公開設定</p>
+   <p><span><%= form.radio_button :status, 10 %>&nbsp; 公開</span></p>
+   <p><%= form.radio_button :status, 20 %> &nbsp; 非公開</p>
+</div>
+<div id="submit" class="mx-auto">
+   <%= form.submit "投稿する", class: "form-control"%>
+</div>
+
 <% end %>
