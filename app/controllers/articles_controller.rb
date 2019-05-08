@@ -44,6 +44,11 @@ class ArticlesController < ApplicationController
 
     def update
         @article = Article.find(params[:id])
+
+        # 入力が失敗した時のために保持
+        @title = params[:article][:title]
+        @content = params[:article][:content]
+
         @article.update(article_params)
         if @article.save
             redirect_to(user_page_path(current_user.username), notice: "編集しました。")
