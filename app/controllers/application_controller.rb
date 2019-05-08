@@ -1,17 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :set_current_user
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-  private
-  def set_current_user
-    @current_user = User.find_by(id: session[:user_id])
-  end
-
-  def forbid_login_user
-    if @current_user
-      redirect_to(user_page_path(@current_user.username), notice: "すでにログインしています")
-    end
-  end
 
  protected
  def configure_permitted_parameters
