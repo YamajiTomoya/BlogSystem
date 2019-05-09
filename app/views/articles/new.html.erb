@@ -1,6 +1,6 @@
 <% @article.errors.full_messages.each do |message| %>
 <div class="alert alert-danger mx-auto" role="alert">
-  <%= message %>
+   <%= message %>
 </div>
 <% end %>
 
@@ -19,11 +19,10 @@
 </div>
 <div class="mx-auto">
    <p>公開設定</p>
-   <p><span><%= form.radio_button :status, 10 %>&nbsp; 公開</span></p>
-   <p><%= form.radio_button :status, 20 %> &nbsp; 非公開</p>
+   <p><span><%= form.radio_button :status, "open" %>&nbsp; 公開</span></p>
+   <p><%= form.radio_button :status, "not_open" %> &nbsp; 非公開</p>
 </div>
 <div id="submit" class="mx-auto">
    <%= form.submit "投稿する", class: "form-control"%>
 </div>
-
 <% end %>

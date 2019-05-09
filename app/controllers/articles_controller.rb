@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     def show
         @article = Article.find(params[:id])
         # 非公開設定されているなら、権限確認
-        if @article.status == 20
+        if @article.not_open?
             ensure_current_user
         end
         @comment = @article.comments.build
