@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
     def index
         @user = User.find_by(username: params[:username])
-        @articles = Article.where(user_id: @user.id)
+        @articles = Article.page(params[:page]).per(3).where(user_id: @user.id)
         @author_flg = false
         # 執筆者は全ての記事を見れますが、非ログインユーザーはカレントユーザーのidを持っていないので、このような記述になっています
         unless current_user
