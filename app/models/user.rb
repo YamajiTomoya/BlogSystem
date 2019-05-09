@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
-  
+
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -15,7 +15,7 @@ class User < ApplicationRecord
   def email_required?
     false
   end
-  
+
   def email_changed?
     false
   end
