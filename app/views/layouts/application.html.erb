@@ -17,7 +17,7 @@
   <header>
     <h1 id="logo">BlogSystem</h1>
     <ul class="header-menus">
-      <% if current_user %>
+      <% if user_signed_in? %>
       <li>
         <%= link_to("Logout", destroy_user_session_path, {method: :delete}) %>
       </li>
@@ -44,7 +44,7 @@
     <%= flash[:error] %>
   </div>
   <% end %>
-  
+
   <% if flash[:notice] %>
   <div class="alert alert-success mx-auto" role="alert">
     <%= flash[:notice] %>

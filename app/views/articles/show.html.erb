@@ -10,7 +10,7 @@
   <h3>Comments</h3>
 </div>
 
-<% if current_user %>
+<% if user_signed_in? %>
 <%= form_with model: [@article, @article.comments.build], class: "form-group" do |form| %>
 
 <div class="comment-form mx-auto">
