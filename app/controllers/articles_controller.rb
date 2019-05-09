@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :create]
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update]
     before_action :ensure_current_user, only: [:edit, :update, :delete]
 
     def index
@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
         if @article.save
             redirect_to(user_page_path(current_user.username), notice: "記事を編集しました。")
         else
-            render("articles/edit") 
+            render("articles/edit")
         end
     end
 
@@ -65,11 +65,7 @@ class ArticlesController < ApplicationController
     private
     def ensure_current_user
         @article = Article.find(params[:id])
-        unless current_user
-            redirect_to(new_user_session_path, alert: "権限がありません。")
-            return
-        end
-        if @current_user.id != @article.user_id
+        if current_user.id != @article.user_id
             redirect_to(user_page_path(current_user.username), alert: "権限がありません。")
         end
     end
