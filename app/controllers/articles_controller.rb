@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
     def index
         @user = User.find_by(username: params[:username])
-        @articles = Article.page(params[:page]).per(3).where(user_id: @user.id)
+        @articles = Article.order("id").page(params[:page]).per(3).where(user_id: @user.id)
     end
 
     def show
@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
             ensure_current_user
         end
         @comment = @article.comments.build
-        @comments = Comment.where(article_id: params[:id])
+        @comments = Comment.order("id").where(article_id: params[:id])
     end
 
     def new
