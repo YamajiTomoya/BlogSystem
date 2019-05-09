@@ -13,13 +13,15 @@ class Article < ApplicationRecord
     return Comment.where(article_id: self.id).size
   end
 
-  def accessible?(current_user)
-    if self.open?
-      return true
-    elsif current_user.nil?
+  def author?(current_user)
+    if current_user.nil?
       return false
     else
       return current_user.id == self.user_id
     end
+  end
+
+  def accessible?(current_user)
+    return self.open? || author?(current_user)
   end
 end

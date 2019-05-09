@@ -30,7 +30,7 @@
   </div>
   <div class="card-footer">
     <div class="article-list-menu">
-      <% if @author_flg %>
+      <% if article.author?(current_user) %>
       <%= link_to("編集", edit_article_path(article.id)) %> &nbsp;
       <%= link_to("削除", article_path(article.id), method: :delete) %>
       <% end %>
