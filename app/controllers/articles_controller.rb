@@ -13,7 +13,6 @@ class ArticlesController < ApplicationController
         if @article.not_open?
             ensure_current_user
         end
-        @comment = @article.comments.build
         @comments = Comment.order("id").where(article_id: params[:id])
     end
 
