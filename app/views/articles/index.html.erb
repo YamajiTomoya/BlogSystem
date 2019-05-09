@@ -11,7 +11,7 @@
 </div>
 
 <% @articles.each do |article| %>
-<% if @author_flg || article.open? %>
+<% if article.accessible?(current_user) %>
 <div class="card">
   <%= link_to(article_path(article.id)) do %>
   <div class="card-header">
