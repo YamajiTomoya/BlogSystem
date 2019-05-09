@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
-  before_action :ensure_current_user, only: %i[edit update delete]
+  before_action :ensure_current_user, only: %i[edit update destroy]
 
   def index
     @user = User.find_by(username: params[:username])
