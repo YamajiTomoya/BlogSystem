@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
         if @article.save
             redirect_to(user_page_path(current_user.username), notice: "記事を作成しました。")
         else
-            render("articles/new")
+            render :new
         end
     end
 
@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
         if @article.save
             redirect_to(user_page_path(current_user.username), notice: "記事を編集しました。")
         else
-            render("articles/edit")
+            render :edit
         end
     end
 
