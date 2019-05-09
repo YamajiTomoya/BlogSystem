@@ -59,6 +59,7 @@ group :development do
   gem 'pry-byebug'
   gem 'solargraph'
   gem 'ruby-lint'
+  gem 'rubocop'
 
 end
 

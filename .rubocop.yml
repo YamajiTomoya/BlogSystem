@@ -1,0 +1,41 @@
+Rails:
+  Enabled: true
+
+AllCops:
+  # Rubyのバージョンを指定
+  TargetRubyVersion: 2.4.1
+  # 除外するファイル
+  Exclude:
+    - vendor/bundle/**/*
+    - bin/*
+    - db/**/*
+    - config/**/*
+    - Gemfile
+
+# Missing magic comment # frozen_string_literal: true. を無視
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Missing top-level class documentation comment. を無視
+Style/Documentation:
+  Enabled: false
+
+# Line is too long を無視
+Metrics/LineLength:
+  Enabled: false
+
+# Use nested module/class definitions instead of compact style. を無視
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# 日本語のコメントを許可
+AsciiComments:
+ Enabled: false
+
+# ABC Metric 許容サイズの設定
+Metrics/AbcSize:
+  Max: 20
+
+# if
+GuardClause:
+  MinBodyLength: 4
