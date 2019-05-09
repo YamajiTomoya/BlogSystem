@@ -4,13 +4,10 @@ Rails.application.routes.draw do
   root "users#index"
   get "users/:username/articles" => "articles#index", as: :user_page
   resources :articles do
-    # comment[s]じゃないとform_withが動きません
-    post "comments" => "comments#create"
+    resources :comments, :only =>[
+      :create, :edit, :update, :destroy
+    ]
   end
-  
-  resources :comments, :only =>[
-    :edit, :update, :destroy
-  ]
 
   # letter_opener設定
   if Rails.env.development?
