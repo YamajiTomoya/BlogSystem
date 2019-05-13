@@ -17,6 +17,15 @@
     <p>本文</p>
     <%= form.text_area :content, value: @content, class: "form-control", rows: 10 %>
 </div>
+<div class="write-form mx-auto">
+    <p>画像</p>
+    <div class="image">
+        <% if @article.image.attached? %>
+        <%= image_tag @article.image.variant(combine_options: {auto_orient: true, gravity: "center", resize: "1000x200^", crop: "1000x200+0+0"}) %>
+        <% end %>
+    </div>
+    <%= form.file_field :image, class: "form-control" %>
+</div>
 <div class="mx-auto">
     <p>公開設定</p>
     <p><span><%= form.radio_button :status, "open" %>&nbsp; 公開</span></p>

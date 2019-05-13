@@ -1,6 +1,6 @@
 <div class="image">
   <% if @article.image.attached? %>
-  <%= image_tag @article.image %>
+  <%= image_tag @article.image.variant(combine_options: {auto_orient: true, gravity: "center", resize: "1200x100^", crop: "1200x300+0+0"}) %>
   <% end %>
 </div>
 <div class="heading">
