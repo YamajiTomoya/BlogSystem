@@ -1,12 +1,6 @@
 <div class="heading">
   <h3>
-    <% if ! current_user %>
-    <%= @user.username %>のページ</h2>
-    <% elsif @user.id == current_user.id %>
-    My page
-    <% else %>
-    <%= @user.username %>のページ</h2>
-    <% end %>
+    <%= page_owner_display(@user) %>
   </h3>
 </div>
 
@@ -17,17 +11,15 @@
   <div class="card-header">
     <h3 class="title"><%= article.title %></h3>
   </div>
-  <%# 長い本文は途中までしか表示しない %>
+
   <div class="card-body">
     <p class="content">
-      <% if article.content.size <= 150 %>
-      <%= article.content%>
-      <% else %>
-      <%= article.content.slice(0, 150) + "..."%>
-      <% end %>
+      <%# 長い本文は途中までしか表示しない %>
+      <%= shrink_content(article.content) %>
     </p>
-    <% end %>
   </div>
+  <% end %>
+
   <div class="card-footer">
     <div class="article-list-menu">
       <% if article.author?(current_user) %>
