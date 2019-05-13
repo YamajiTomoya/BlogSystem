@@ -11,16 +11,20 @@
 <%= form_with model: @article, url: articles_path, local: true, class: "form-group" do |form| %>
 <div class="write-form mx-auto">
    <p>タイトル</p>
-   <%= form.text_field :title, value: @title, class: "form-control" %>
+   <%= form.text_field :title, class: "form-control" %>
 </div>
 <div class="write-form mx-auto">
    <p>本文</p>
-   <%= form.text_area :content, value: @content, class: "form-control", rows: 10 %>
+   <%= form.text_area :content, class: "form-control", rows: 10 %>
 </div>
 <div class="mx-auto">
    <p>公開設定</p>
    <p><span><%= form.radio_button :status, "open" %>&nbsp; 公開</span></p>
    <p><%= form.radio_button :status, "not_open" %> &nbsp; 非公開</p>
+</div>
+<div class="mx-auto">
+   <p>画像</p>
+   <%= form.file_field :image, class: "form-control" %>
 </div>
 <div id="submit" class="mx-auto">
    <%= form.submit "投稿する", class: "form-control"%>

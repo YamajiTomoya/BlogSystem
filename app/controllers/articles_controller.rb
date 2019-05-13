@@ -19,12 +19,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    # 入力が失敗した時のために保持
-    @title = params[:article][:title]
-    @content = params[:article][:content]
-
-    @article = Article.find(user_id)
-    @new_article = Article.new(article_params.merge(user_id: current_user.id))
+    @article = Article.new(article_params.merge(user_id: current_user.id))
     if @article.save
       redirect_to(user_page_path(current_user.username), notice: '記事を作成しました。')
     else
