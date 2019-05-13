@@ -23,7 +23,8 @@ class ArticlesController < ApplicationController
     @title = params[:article][:title]
     @content = params[:article][:content]
 
-    @article = Article.new(article_params.merge(user_id: current_user.id))
+    @article = Article.find(user_id)
+    @new_article = Article.new(article_params.merge(user_id: current_user.id))
     if @article.save
       redirect_to(user_page_path(current_user.username), notice: '記事を作成しました。')
     else
@@ -33,10 +34,17 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    # 入力が失敗した時のために保持
+    @title = @article.title
+    @content = @article.content
   end
 
   def update
     @article = Article.find(params[:id])
+    # 入力失敗時には、空の部分には元々持っていた値を入れ、編集した部分はそのまま残すようにします
+    @title = params[:article][:title].presence || @article.title
+    @content = params[:article][:content].presence || @article.content
+
     @article.update(article_params)
     if @article.save
       redirect_to(user_page_path(current_user.username), notice: '記事を編集しました。')
