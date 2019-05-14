@@ -55,6 +55,13 @@
     width: 60%;
 }
 
+#q_created_at_gteq,
+#q_created_at_lteq {
+    width: 30%;
+    margin: 0;
+    display: inline;
+}
+
 .write-form {
     width: 90%;
 }

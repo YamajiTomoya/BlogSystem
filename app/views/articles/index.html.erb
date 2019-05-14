@@ -4,16 +4,18 @@
   </h3>
 </div>
 
-<%= search_form_for(@search, url: user_page_path(@user.username)) do |f| %>
+<%= search_form_for(@search, url: user_page_path(@user.username)) do |form| %>
 <div class="serach-form mx-auto">
   <p>タイトル検索</p>
-  <p><%= f.search_field(:title_cont, class: "form-control") %></p>
+  <p><%= form.search_field(:title_cont, class: "form-control") %></p>
   <p>日付検索</p>
-  <p><%= f.text_field :created_at_gteq %>〜<%= f.text_field :created_at_lteq %></p>
+  <p>
+    <%= form.text_field(:created_at_gteq, class: "form-control") %>〜<%= form.text_field(:created_at_lteq, class: "form-control") %>
+  </p>
 </div>
-<div class="submit actions mx-auto"><%= f.submit("検索", class: "form-control") %></div>
+<div class="submit actions mx-auto"><%= form.submit("検索", class: "form-control") %></div>
 <div class="submit reset_button actions mx-auto">
-  <%= f.button "リセット", type: :reset, class: "form-control" %>
+  <%= form.button "クリア", type: :button, id: "clear-form", class: "form-control" %>
 </div>
 <% end %>
 
