@@ -68,7 +68,17 @@ textarea {
 }
 
 .submit {
+    margin: 10px 0 10px;
     width: 30%;
+}
+
+// 検索フォームリセットボタンをクリックすると、ずっと青枠が残ってしまうので表示させないようにしています。
+button[type="reset"]:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: initial;
+    box-shadow: initial;
 }
 
 #content {

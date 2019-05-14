@@ -1,4 +1,8 @@
 class Article < ApplicationRecord
+  ransacker :created_at do
+    Arel.sql("date(created_at)")
+  end
+
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_one_attached :image

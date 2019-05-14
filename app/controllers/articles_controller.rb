@@ -4,7 +4,9 @@ class ArticlesController < ApplicationController
 
   def index
     @user = User.find_by(username: params[:username])
-    @articles = Article.order('id').page(params[:page]).per(3).where(user_id: @user.id)
+    @articles = Article.where(user_id: @user.id)
+    @search = Article.ransack(params[:q])
+    @articles = @search.result.order('id').page(params[:page]).per(3)
   end
 
   def show
