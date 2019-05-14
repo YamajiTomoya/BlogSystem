@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
-    article = Article.find(comment.article_id)
+    article = comment.article
     # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
     return unless current_user
 

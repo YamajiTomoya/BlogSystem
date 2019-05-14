@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     @user = User.find_by(username: params[:username])
-    @articles = Article.where(user_id: @user.id)
+    @articles = @user.articles
     @search = Article.ransack(params[:q])
     @articles = @search.result.order('id').page(params[:page]).per(3)
   end
@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     # 非公開設定されているなら、権限確認
     ensure_current_user if @article.not_open?
-    @comments = Comment.order('id').where(article_id: params[:id])
+    @comments = @article.comments.order('id')
   end
 
   def new
