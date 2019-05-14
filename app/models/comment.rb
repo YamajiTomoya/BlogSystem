@@ -4,10 +4,6 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
 
-  def user
-    User.find(user_id)
-  end
-
   def deletable?(current_user)
     # あるコメントに対して、削除可能かどうか判定します
     return false unless current_user
