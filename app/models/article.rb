@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   ransacker :created_at do
-    Arel.sql("date(created_at)")
+    Arel.sql('date(created_at)')
   end
 
   belongs_to :user
