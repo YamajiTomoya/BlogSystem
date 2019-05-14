@@ -80,7 +80,7 @@ textarea {
 }
 
 // 検索フォームリセットボタンをクリックすると、ずっと青枠が残ってしまうので表示させないようにしています。
-button[type="reset"]:focus {
+button[type="button"]:focus {
     color: #495057;
     background-color: #fff;
     border-color: #ced4da;
