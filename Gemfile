@@ -40,6 +40,7 @@ gem 'bcrypt'
 gem 'rails-i18n'
 gem 'devise'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'ransack'
 

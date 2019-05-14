@@ -3,14 +3,15 @@
     <%= page_owner_display(@user) %>
   </h3>
 </div>
-
 <%= search_form_for(@search, url: user_page_path(@user.username)) do |form| %>
 <div class="serach-form mx-auto">
   <p>タイトル検索</p>
   <p><%= form.search_field(:title_cont, class: "form-control") %></p>
   <p>日付検索</p>
   <p>
-    <%= form.text_field(:created_at_gteq, class: "form-control") %>〜<%= form.text_field(:created_at_lteq, class: "form-control") %>
+    <%= form.text_field(:created_at_gteq, class: "date-picker form-control", autocomplete: "off") %>
+    〜
+    <%= form.text_field(:created_at_lteq, class: "date-picker form-control", autocomplete: "off") %>
   </p>
 </div>
 <div class="submit actions mx-auto"><%= form.submit("検索", class: "form-control") %></div>
