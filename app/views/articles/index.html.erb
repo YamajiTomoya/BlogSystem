@@ -29,7 +29,7 @@
     <div class="article-list-menu">
       <% if article.author?(current_user) %>
       <%= link_to("編集", edit_article_path(article.id)) %> &nbsp;
-      <%= link_to("削除", article_path(article.id), method: :delete) %>
+      <%= link_to("削除", article_path(article.id), method: :delete, data: { confirm: '削除しますか？' }) %>
       <% end %>
     </div>
     <div class="article-list-info">

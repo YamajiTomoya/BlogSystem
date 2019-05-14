@@ -44,7 +44,7 @@
         <%= link_to("編集", edit_article_comment_path(@article.id, comment.id), remote: true) %> &nbsp;
         <% end %>
         <% if comment.deletable?(current_user) %>
-        <%= link_to("削除", article_comment_path(@article.id, comment.id), method: :delete) %>
+        <%= link_to("削除", article_comment_path(@article.id, comment.id), method: :delete, data: { confirm: '削除しますか？' }) %>
         <% end %>
       </div>
       <div class="comment-info">
