@@ -51,6 +51,15 @@
     font-size: 12px;
 }
 
+.search-header h4 {
+    width: 70%;
+    border-bottom: 1px solid black;
+}
+
+.search-item {
+    display: none;
+}
+
 .serach-form {
     width: 60%;
 }
