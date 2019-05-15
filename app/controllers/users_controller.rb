@@ -6,8 +6,4 @@ class UsersController < ApplicationController
       redirect_to(new_user_session_path)
     end
   end
-
-  def show
-    redirect_to(user_page_path(params[:username]))
-  end
 end
