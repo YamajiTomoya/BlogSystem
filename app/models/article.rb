@@ -14,10 +14,6 @@ class Article < ApplicationRecord
   validates :status, presence: true
   validates :user_id, presence: true
 
-  def comment_num
-    Comment.where(article_id: id).size
-  end
-
   def author?(current_user)
     if current_user.nil?
       false

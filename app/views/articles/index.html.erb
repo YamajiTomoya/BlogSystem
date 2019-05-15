@@ -60,7 +60,7 @@
       <span>
         created: <%= article.created_at.strftime("%Y-%m-%d %H:%M") %> &nbsp;
         updated: <%= article.updated_at.strftime("%Y-%m-%d %H:%M")%> &nbsp;
-        Comment(<%= article.comment_num %>)
+        Comment(<%= article.comments.count %>)
       </span>
     </div>
   </div>
