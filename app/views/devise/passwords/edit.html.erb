@@ -12,16 +12,16 @@
 <%= f.hidden_field :reset_password_token %>
 
 <div class="field mx-auto">
-  <p>新しいパスワード（10文字以上）</p>
+  <p><%= I18n.t "new_password" %></p>
   <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
 </div>
 
 <div class="field mx-auto">
-  <p>新しいパスワード（確認）</p>
+  <p><%= I18n.t "new_password_confirmation" %></p>
   <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
 </div>
 
 <div class="submit actions mx-auto">
-  <%= f.submit "パスワードを再設定", class: "form-control" %>
+  <%= f.submit (I18n.t "do_reset_password"), class: "form-control" %>
 </div>
 <% end %>

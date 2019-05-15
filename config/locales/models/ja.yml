@@ -10,8 +10,54 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         reset_password_token: パスワードリセット権限
-      
+
       article:
         title: タイトル
         content: 本文
         status: 公開設定
+
+  username: ユーザーネーム
+  email: メールアドレス
+  password: パスワード（10文字以上）
+  password_confirmation: パスワード（確認用）
+  signup: サインアップ
+  login: ログイン
+
+  forgot_password: パスワードを忘れた方はこちら
+  send_email_form_for_password_reset: パスワード再設定用メール送信フォーム
+  send_email_for_reset: 再設定用メールを送信
+  new_password: 新しいパスワード（10文字以上）
+  new_password_confirmation: 新しいパスワード（確認）
+  do_reset_password: パスワードを再設定
+  password_reset_mail_1: このメールはパスワード再設定用のメールです。以下のリンクからパスワードの再設定を行ってください。
+  password_reset_mail_2: もしもこのメールに心あたりがなければ、そのまま削除してくださいますようお願い致します。
+  password_reset_mail_3: 上記のリンクにアクセスして新しいパスワードを作成するまで、パスワードは変更されませんのでご注意ください。
+
+  search: 検索
+  title_search: タイトル検索
+  date_search: 日付検索
+  clear: クリア
+  Do_you_want_to_delete_it?: 削除しますか？
+
+  title: タイトル
+  content: 本文
+  image: 画像
+  status: 公開設定
+  open: 公開
+  not_open: 非公開
+  do_create: 投稿する
+  posted_an_article: 記事を投稿しました。
+  edit: 編集
+  do_update: 編集する
+  edited_an_article: 記事を編集しました。
+  delete: 削除
+  deleted_an_article: 記事を削除しました。
+
+  posted_a_comment: コメントを投稿しました。
+  edit_comment: コメントの編集
+  edited_a_comment: コメントを編集しました。
+  deleted_a_comment: コメントを削除しました。
+  Please_input_a_comment: コメントを入力してください。
+  You_need_to_login_to_post_comments: コメントの投稿にはログインが必要です。
+  You_do_not_have_the_authority: 権限がありません。
+

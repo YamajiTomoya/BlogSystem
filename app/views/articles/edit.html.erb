@@ -10,15 +10,15 @@
 
 <%= form_with model: @article, url: article_path(@article.id), local: true, method: :patch, class: "form-group" do |form| %>
 <div class="write-form mx-auto">
-    <p>タイトル</p>
+    <p><%= I18n.t "title" %></p>
     <%= form.text_field :title, value: @title, class: "form-control" %>
 </div>
 <div class="write-form mx-auto">
-    <p>本文</p>
+    <p><%= I18n.t("content") %></p>
     <%= form.text_area :content, value: @content, class: "form-control", rows: 10 %>
 </div>
 <div class="write-form mx-auto">
-    <p>画像</p>
+    <p><%= I18n.t("image") %></p>
     <div class="image">
         <% if @article.image.attached? %>
         <%= image_tag @article.image.variant(combine_options: {auto_orient: true, gravity: "center", resize: "1000x200^", crop: "1000x200+0+0"}) %>
@@ -27,11 +27,11 @@
     <%= form.file_field :image, class: "form-control" %>
 </div>
 <div class="mx-auto">
-    <p>公開設定</p>
-    <p><span><%= form.radio_button :status, "open" %>&nbsp; 公開</span></p>
-    <p><%= form.radio_button :status, "not_open" %> &nbsp; 非公開</p>
+    <p><%= I18n.t("status") %></p>
+    <p><span><%= form.radio_button :status, "open" %>&nbsp; <%= I18n.t("open") %></span></p>
+    <p><%= form.radio_button :status, "not_open" %> &nbsp; <%= I18n.t("not_open") %></p>
 </div>
-<div class="class mx-auto">
-    <%= form.submit "編集する", class: "form-control"%>
+<div class="class mx-auto submit">
+    <%= form.submit (I18n.t("do_update")), class: "form-control"%>
 </div>
 <% end %>

@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params.merge(user_id: current_user.id, article_id: params[:article_id]))
     if @comment.save
-      redirect_to(article_path(params[:article_id]), notice: 'コメントを投稿しました。')
+      redirect_to(article_path(params[:article_id]), notice: (I18n.t 'posted_a_comment'))
     else
-      redirect_to(article_path(params[:article_id]), alert: 'コメント入力してください。')
+      redirect_to(article_path(params[:article_id]), alert: (I18n.t 'Please_input_a_comment'))
     end
   end
 
@@ -18,9 +18,9 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
     if @comment.save
-      redirect_to(article_path(@comment.article_id), notice: 'コメントを編集しました。')
+      redirect_to(article_path(@comment.article_id), notice: (I18n.t 'edited_a_comment'))
     else
-      redirect_to(article_path(@comment.article_id), alert: 'コメント入力してください。')
+      redirect_to(article_path(@comment.article_id), alert: (I18n.t 'Please_input_a_comment'))
     end
   end
 
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 
     if current_user.id == comment.user_id || current_user.id == article.user_id
       comment.destroy
-      redirect_back(fallback_location: article_path(article.id), alert: 'コメントを削除しました。')
+      redirect_back(fallback_location: article_path(article.id), alert: (I18n.t 'deleted_a_comment'))
     end
   end
 

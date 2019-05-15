@@ -5,16 +5,16 @@
 <% end %>
 
 <div class="heading">
-  <h3>パスワード再設定用メール送信フォーム</h3>
+  <h3><%= I18n.t "send_email_form_for_password_reset" %></h3>
 </div>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, class: "form-group") do |f| %>
 <div class="field mx-auto">
-  <p>メールアドレス</p>
+  <p><%= I18n.t "email" %></p>
   <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
 </div>
 
 <div class="submit actions mx-auto">
-  <%= f.submit "再設定用メールを送信", class: "form-control" %>
+  <%= f.submit (I18n.t "send_email_for_reset"), class: "form-control" %>
 </div>
 <% end %>

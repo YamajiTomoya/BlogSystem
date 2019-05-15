@@ -5,23 +5,23 @@
 </div>
 <div class="search">
   <div class="search-header">
-    <h4 class="mx-auto">+&nbsp;検索&nbsp;+</h4>
+    <h4 class="mx-auto">+&nbsp;<%= I18n.t 'search' %>&nbsp;+</h4>
   </div>
   <div class="search-item">
     <%= search_form_for(@search, url: user_page_path(@user.username)) do |form| %>
     <div class="serach-form mx-auto">
-      <p>タイトル検索</p>
+      <p><%= I18n.t "title_search" %></p>
       <p><%= form.search_field(:title_cont, class: "form-control") %></p>
-      <p>日付検索</p>
+      <p><%= I18n.t "date_search" %></p>
       <p>
         <%= form.text_field(:created_at_gteq, class: "date-picker form-control", autocomplete: "off") %>
         〜
         <%= form.text_field(:created_at_lteq, class: "date-picker form-control", autocomplete: "off") %>
       </p>
     </div>
-    <div class="submit actions mx-auto"><%= form.submit("検索", class: "form-control") %></div>
+    <div class="submit actions mx-auto"><%= form.submit((I18n.t "search"), class: "form-control") %></div>
     <div class="submit reset_button actions mx-auto">
-      <%= form.button "クリア", type: :button, id: "clear-form", class: "form-control" %>
+      <%= form.button (I18n.t "clear"), type: :button, id: "clear-form", class: "form-control" %>
     </div>
     <% end %>
   </div>
@@ -52,8 +52,8 @@
   <div class="card-footer">
     <div class="article-list-menu">
       <% if article.author?(current_user) %>
-      <%= link_to("編集", edit_article_path(article.id)) %> &nbsp;
-      <%= link_to("削除", article_path(article.id), method: :delete, data: { confirm: '削除しますか？' }) %>
+      <%= link_to((I18n.t "edit"), edit_article_path(article.id)) %> &nbsp;
+      <%= link_to((I18n.t "delete"), article_path(article.id), method: :delete, data: { confirm: (I18n.t "Do_you_want_to_delete_it?") }) %>
       <% end %>
     </div>
     <div class="article-list-info">

@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params.merge(user_id: current_user.id))
     if @article.save
-      redirect_to(user_page_path(current_user.username), notice: '記事を作成しました。')
+      redirect_to(user_page_path(current_user.username), notice: (I18n.t 'posted_an_article'))
     else
       render :new
     end
@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
 
     @article.update(article_params)
     if @article.save
-      redirect_to(user_page_path(current_user.username), notice: '記事を編集しました。')
+      redirect_to(user_page_path(current_user.username), notice: (I18n.t 'edited_an_article'))
     else
       render :edit
     end
@@ -53,14 +53,14 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to(user_page_path(current_user.username), notice: '記事を削除しました。')
+    redirect_to(user_page_path(current_user.username), notice: (I18n.t 'deleted_an_article'))
   end
 
   private
 
   def ensure_current_user
     @article = Article.find(params[:id])
-    redirect_to(user_page_path(current_user.username), alert: '権限がありません。') if current_user.id != @article.user_id
+    redirect_to(user_page_path(current_user.username), alert: (I18n.t 'You_do_not_have_the_authority')) if current_user.id != @article.user_id
   end
 
   def article_params
