@@ -3,6 +3,7 @@ ARTICLE_NUM = 30
   Article.seed do |s|
     s.id = i
     s.title = Faker::Book.title
+    s.status = rand(2).zero? ? 10 : 20
     s.content = Faker::Lorem.sentence(random_words_to_add = 30)
     s.user = User.find(rand(USER_NUM) + 1)
   end
