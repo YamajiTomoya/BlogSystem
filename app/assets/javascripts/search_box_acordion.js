@@ -1,14 +1,18 @@
 $(function () {
     var nbsp = String.fromCharCode(160);
-    $('.search-header').on('click', function () {
-        if ($('.search-item').hasClass('open')) {
-            $('.search-item').removeClass('open');
-            $('.search-item').slideUp();
-            $(this).find('h4').text('+' + nbsp + '検索' + nbsp + '+');
+    var $search_header = $('.search-header');
+    var $search_item = $('.search-item')
+    var $search_text = $search_header.find('h4')
+
+    $search_header.on('click', function () {
+        if ($search_item.hasClass('open')) {
+            $search_item.removeClass('open');
+            $search_item.slideUp();
+            $search_text.text('+' + nbsp + '検索' + nbsp + '+');
         } else {
-            $('.search-item').addClass('open');
-            $('.search-item').slideDown();
-            $(this).find('h4').text('-' + nbsp + '検索' + nbsp + '-');
+            $search_item.addClass('open');
+            $search_item.slideDown();
+            $search_text.text('-' + nbsp + '検索' + nbsp + '-');
         }
     });
 });
