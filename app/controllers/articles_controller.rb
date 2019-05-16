@@ -6,13 +6,14 @@ class ArticlesController < ApplicationController
     @user = User.find_by(username: params[:username])
     @search = @user.articles.ransack(params[:q])
     @articles = @search.result.order(:id).page(params[:page]).per(3)
+    @articles = ArticleDecorator.decorate_collection(@articles)
   end
 
   def show
     @article = Article.find(params[:id])
     # 非公開設定されているなら、権限確認
     ensure_current_user if @article.not_open?
-    @comments = @article.comments.order(:id)
+    @comments = CommentDecorator.decorate_collection(@article.comments.order(:id))
   end
 
   def new
