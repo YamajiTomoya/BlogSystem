@@ -50,7 +50,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'seed-fu'
   gem 'faker'
-  gem 'annotate'
 end
 
 group :development do
@@ -65,7 +64,7 @@ group :development do
   gem 'pry-byebug'
   gem 'ruby-lint'
   gem 'rubocop'
-
+  gem 'annotate'
 end
 
 group :test do
