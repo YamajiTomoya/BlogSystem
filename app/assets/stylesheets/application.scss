@@ -30,40 +30,40 @@ body {
 
 header {
     border-bottom: 2px solid black;
-}
 
-header #logo {
-    display: inline;
-}
+    #logo {
+        display: inline;
+    }
 
-header ul {
-    display: inline;
-}
+    .header-menus {
+        display: inline;
 
-.header-menus li {
-    margin: 7px 12px 0;
-    float: right;
-    list-style: none;
-    font-size: 20px;
-}
+        li {
+            margin: 7px 12px 0;
+            float: right;
+            list-style: none;
+            font-size: 20px;
+        }
 
-.header-menus a {
-    color: black;
-    text-decoration: none;
-}
+        li:hover {
+            font-weight: bold;
+            transform: rotate(24deg)
+        }
 
-.header-menus li:hover {
-    font-weight: bold;
-    transform: rotate(24deg)
-}
-
-.heading {
-    margin: 30px 0 20px;
-    border-bottom: 2px solid black;
+        a {
+            color: black;
+            text-decoration: none;
+        }
+    }
 }
 
 .alert {
     width: 80%;
     margin: 10px;
     text-align: left;
+}
+
+.heading {
+    margin: 30px 0 20px;
+    border-bottom: 2px solid black;
 }
