@@ -4,16 +4,15 @@ class ArticlesController < ApplicationController
 
   def index
     @user = User.find_by(username: params[:username])
-    @articles = @user.articles
-    @search = Article.ransack(params[:q])
-    @articles = @search.result.order('id').page(params[:page]).per(3).where(user_id: @user.id)
+    @search = @user.articles.ransack(params[:q])
+    @articles = @search.result.order(:id).page(params[:page]).per(3)
   end
 
   def show
     @article = Article.find(params[:id])
     # 非公開設定されているなら、権限確認
     ensure_current_user if @article.not_open?
-    @comments = @article.comments.order('id')
+    @comments = @article.comments.order(:id)
   end
 
   def new
@@ -21,7 +20,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params.merge(user_id: current_user.id))
+    @article = current_user.articles.build(article_params)
     if @article.save
       redirect_to(user_page_path(current_user.username), notice: (I18n.t 'posted_an_article'))
     else

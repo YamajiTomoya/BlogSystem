@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, only: %i[create]
 
   def create
-    @comment = Comment.new(comment_params.merge(user_id: current_user.id, article_id: params[:article_id]))
+    @comment = current_user.comments.build(comment_params)
+    @comment.article_id = params[:article_id]
     if @comment.save
       redirect_to(article_path(params[:article_id]), notice: (I18n.t 'posted_a_comment'))
     else
