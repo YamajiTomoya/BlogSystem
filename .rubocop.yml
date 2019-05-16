@@ -39,3 +39,7 @@ Metrics/AbcSize:
 # if
 GuardClause:
   MinBodyLength: 4
+
+# if/unlessの中身が1行なら後置に
+Style/IfUnlessModifier:
+  Enabled: false

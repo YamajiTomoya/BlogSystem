@@ -63,7 +63,9 @@ class ArticlesController < ApplicationController
 
   def ensure_current_user
     @article = Article.find(params[:id])
-    redirect_to(user_page_path(current_user.username), alert: (I18n.t 'You_do_not_have_the_authority')) if current_user.id != @article.user_id
+    if current_user.id != @article.user_id
+      redirect_to(user_page_path(current_user.username), alert: (I18n.t 'You_do_not_have_the_authority'))
+    end
   end
 
   def article_params
