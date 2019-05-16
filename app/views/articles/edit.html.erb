@@ -2,12 +2,7 @@
     <h3>Edit Article</h3>
 </div>
 
-<% @check.errors.full_messages.each do |message| %>
-<div class="alert alert-danger mx-auto" role="alert">
-    <%= message %>
-</div>
-<% end %>
-
+<%= render partial: "layouts/error_messages", locals: {object: @check} %>
 <%= form_with model: @article, url: article_path(@article.id), local: true, method: :patch, class: "form-group" do |form| %>
 <div class="write-form mx-auto">
     <p><%= I18n.t "title" %></p>

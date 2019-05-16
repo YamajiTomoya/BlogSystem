@@ -1,9 +1,4 @@
-<% @user.errors.full_messages.each do |message| %>
-<div class="alert alert-danger mx-auto" role="alert">
-  <%= message %>
-</div>
-<% end %>
-
+<%= render partial: "layouts/error_messages", locals: {object: @user} %>
 <div class="heading">
   <h3><%= I18n.t "send_email_form_for_password_reset" %></h3>
 </div>
