@@ -2,7 +2,7 @@
     <h3>Edit Article</h3>
 </div>
 
-<% @article.errors.full_messages.each do |message| %>
+<% @check.errors.full_messages.each do |message| %>
 <div class="alert alert-danger mx-auto" role="alert">
     <%= message %>
 </div>
@@ -11,11 +11,11 @@
 <%= form_with model: @article, url: article_path(@article.id), local: true, method: :patch, class: "form-group" do |form| %>
 <div class="write-form mx-auto">
     <p><%= I18n.t "title" %></p>
-    <%= form.text_field :title, value: @title, class: "form-control" %>
+    <%= form.text_field :title, class: "form-control" %>
 </div>
 <div class="write-form mx-auto">
     <p><%= I18n.t("content") %></p>
-    <%= form.text_area :content, value: @content, class: "form-control", rows: 10 %>
+    <%= form.text_area :content, class: "form-control", rows: 10 %>
 </div>
 <div class="write-form mx-auto">
     <p><%= I18n.t("image") %></p>

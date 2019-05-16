@@ -29,22 +29,26 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @check = Article.new
     @article = Article.find(params[:id])
-    # 入力が失敗した時のために保持
-    @title = @article.title
-    @content = @article.content
   end
 
   def update
     @article = Article.find(params[:id])
-    # 入力失敗時には、空の部分には元々持っていた値を入れ、編集した部分はそのまま残すようにします
-    @title = params[:article][:title].presence || @article.title
-    @content = params[:article][:content].presence || @article.content
 
-    @article.update(article_params)
-    if @article.save
+    # 入力失敗時には、空の部分には元々持っていた値を入れ、編集した部分はそのまま残すようにします
+    @check = @article.dup
+    @check.update(article_params)
+
+    if @check.valid?
+      @article.update(article_params)
+      @article.save
       redirect_to(user_page_path(current_user.username), notice: (I18n.t 'edited_an_article'))
     else
+      @article.attributes.each do |key, _value|
+        @article[key] = @check[key] if @check[key].presence
+      end
+      @article.save
       render :edit
     end
   end

@@ -11,12 +11,12 @@
     <%= search_form_for(@search, url: user_page_path(@user.username)) do |form| %>
     <div class="serach-form mx-auto">
       <p><%= I18n.t "title_search" %></p>
-      <p><%= form.search_field(:title_cont, class: "form-control") %></p>
+      <p><%= form.search_field(:title_cont, class: "form-control search-form") %></p>
       <p><%= I18n.t "date_search" %></p>
       <p>
-        <%= form.text_field(:created_at_gteq, class: "date-picker form-control", autocomplete: "off") %>
+        <%= form.text_field(:created_at_gteq, class: "date-picker form-control search-form", autocomplete: "off") %>
         〜
-        <%= form.text_field(:created_at_lteq, class: "date-picker form-control", autocomplete: "off") %>
+        <%= form.text_field(:created_at_lteq, class: "date-picker form-control search-form", autocomplete: "off") %>
       </p>
     </div>
     <div class="submit actions mx-auto"><%= form.submit((I18n.t "search"), class: "form-control") %></div>
