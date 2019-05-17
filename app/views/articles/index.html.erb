@@ -8,7 +8,7 @@
     <h4 class="mx-auto">+&nbsp;<%= I18n.t 'search' %>&nbsp;+</h4>
   </div>
   <div class="search-item">
-    <%= search_form_for(@search, url: user_page_path(@user.username)) do |form| %>
+    <%= search_form_for(@search, url: user_page_path(@user.username), remote: true) do |form| %>
     <div class="serach-form mx-auto">
       <p><%= I18n.t "title_search" %></p>
       <p><%= form.search_field(:title_cont, class: "form-control search-form") %></p>
@@ -19,52 +19,18 @@
         <%= form.text_field(:created_at_lteq, class: "date-picker form-control search-form", autocomplete: "off") %>
       </p>
     </div>
-    <div class="submit actions mx-auto"><%= form.submit((I18n.t "search"), class: "form-control") %></div>
+    <%# ユーザーからは見えない検索フォーム。jsから自動でクリックされる。%>
+    <div class="hidden">
+      <%= form.submit((I18n.t "search"), id: "search-submit", class: "form-control") %>
+    </div>
+
     <div class="submit reset_button actions mx-auto">
-      <%= form.button (I18n.t "clear"), type: :button, id: "clear-form", class: "form-control" %>
+      <%= form.button (I18n.t "clear"), type: :button, id: "clear-button", class: "form-control search-form" %>
     </div>
     <% end %>
   </div>
 </div>
 
-
-<% @articles.each do |article| %>
-<% if article.accessible?(current_user) %>
-<div class="card">
-  <%= link_to(article_path(article.id)) do %>
-  <div class="card-header">
-    <div class="image">
-      <% if article.image.attached? %>
-      <%= image_tag article.image.variant(combine_options: {auto_orient: true, gravity: "center", resize: "1000x200^", crop: "1000x200+0+0"}) %>
-      <% end %>
-    </div>
-    <h3 class="title"><%= article.title %></h3>
-  </div>
-
-  <div class="card-body">
-    <p class="content">
-      <%# 長い本文は途中までしか表示しない %>
-      <%= shrink_content(article.content) %>
-    </p>
-  </div>
-  <% end %>
-
-  <div class="card-footer">
-    <div class="article-list-menu">
-      <% if article.author?(current_user) %>
-      <%= link_to((I18n.t "edit"), edit_article_path(article.id)) %> &nbsp;
-      <%= link_to((I18n.t "delete"), article_path(article.id), method: :delete, data: { confirm: (I18n.t "Do_you_want_to_delete_it?") }) %>
-      <% end %>
-    </div>
-    <div class="article-list-info">
-      <span>
-        created: <%= article.created_at %> &nbsp;
-        updated: <%= article.updated_at%> &nbsp;
-        Comment(<%= article.comments.count %>)
-      </span>
-    </div>
-  </div>
+<div id="search-result">
+  <%= render(partial: 'search_result', locals: { articles: @articles }) %>
 </div>
-<% end %>
-<% end %>
-<%= paginate @articles %>

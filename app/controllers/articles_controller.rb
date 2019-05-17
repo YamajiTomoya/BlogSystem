@@ -7,6 +7,9 @@ class ArticlesController < ApplicationController
     @search = @user.articles.ransack(params[:q])
     @articles = @search.result.order(:id).page(params[:page]).per(3)
     @articles = ArticleDecorator.decorate_collection(@articles)
+    unless params[:q].blank?
+      render 'search_result'
+    end
   end
 
   def show
