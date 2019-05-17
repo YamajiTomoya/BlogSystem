@@ -35,12 +35,22 @@ header {
         display: inline;
     }
 
+    .header-info {
+        display: inline;
+
+        li {
+            display: inline;
+            list-style: none;
+            margin: 0px 10px;
+        }
+    }
+
     .header-menus {
         display: inline;
 
         li {
-            margin: 7px 12px 0;
             float: right;
+            margin: 13px 12px 0;
             list-style: none;
             font-size: 20px;
         }

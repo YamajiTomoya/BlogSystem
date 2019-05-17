@@ -12,6 +12,17 @@
 <body>
   <header>
     <h1 id="logo">BlogSystem</h1>
+    <ul class="header-info">
+      <li>
+        総ユーザー数:<%= @statistic.user_count %>
+      </li>
+      <li>
+        総記事数:<%= @statistic.article_count %>
+      </li>
+      <li>
+        総コメント数:<%= @statistic.comment_count %>
+      </li>
+    </ul>
     <ul class="header-menus">
       <% if user_signed_in? %>
       <li>
@@ -32,6 +43,7 @@
       </li>
       <% end %>
     </ul>
+    <div class="clearfix"></div>
   </header>
 
   <% if alert || flash[:error] %>
