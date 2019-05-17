@@ -4,6 +4,12 @@
 </div>
 <%= form_with model: @article, url: articles_path, local: true, class: "form-group" do |form| %>
 <%= render partial: "write_form", locals: {form: form}%>
+<div class="write-form mx-auto">
+   <p>予約投稿</p>
+   <p>（設定時刻になると記事が公開されます。公開設定は自動で非公開になります。）</p>
+   <p></p>（cronを使ってみるのが目的のため、細かい部分は後に回しています。）</p>
+   <%= form.datetime_select :post_reservation_at, class: "form-control"%>
+</div>
 <div class="submit mx-auto">
    <%= form.submit (I18n.t "do_create"), class: "form-control"%>
 </div>

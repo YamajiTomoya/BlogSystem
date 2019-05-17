@@ -38,4 +38,13 @@ class Article < ApplicationRecord
   def accessible?(current_user)
     open? || author?(current_user)
   end
+
+  # 予約時間になった投稿を公開
+  def self.check_reservation_post
+    Article.all.find_each do |article|
+      now = Time.zone.now
+      article.status = 10 if now >= article.post_reservation_at
+      article.save
+    end
+  end
 end

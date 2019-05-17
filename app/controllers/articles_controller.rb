@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
     @search = @user.articles.ransack(params[:q])
     @articles = @search.result.order(:id).page(params[:page]).per(3)
     @articles = ArticleDecorator.decorate_collection(@articles)
-    unless params[:q].blank?
+    if params[:q].present?
       render 'search_result'
     end
   end
@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+    @article.status = 20 if @article.post_reservation_at.presence
     if @article.save
       redirect_to(user_page_path(current_user.username), notice: (I18n.t 'posted_an_article'))
     else
@@ -73,6 +74,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :content, :status, :image)
+    params.require(:article).permit(:title, :content, :status, :image, :post_reservation_at)
   end
 end
