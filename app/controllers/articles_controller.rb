@@ -43,11 +43,10 @@ class ArticlesController < ApplicationController
 
     # 入力失敗時には、空の部分には元々持っていた値を入れ、編集した部分はそのまま残すようにします
     @check = @article.dup
-    @check.update(article_params)
+    @check.attributes = article_params
 
     if @check.valid?
       @article.update(article_params)
-      @article.save
       redirect_to(user_page_path(current_user.username), notice: (I18n.t 'edited_an_article'))
     else
       @article.attributes.each do |key, _value|
