@@ -43,9 +43,14 @@ class Article < ApplicationRecord
   # 予約時間になった投稿を公開
   def self.check_reservation_post
     Article.all.find_each do |article|
+      next unless article.post_reservation_at
+
       now = Time.zone.now
-      article.status = 10 if now == article.post_reservation_at
-      article.saveS
+      if now >= article.post_reservation_at
+        article.status = 10
+        article.post_reservation_at = nil
+        article.save
+      end
     end
   end
 end
