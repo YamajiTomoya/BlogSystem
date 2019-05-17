@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :get_statistic
+  before_action :send_statistic
 
   protected
-  def get_statistic
+
+  def send_statistic
     @statistic = StatisticDecorator.decorate(Statistic.first)
   end
 
