@@ -22,6 +22,9 @@
       <li>
         総コメント数:<%= @statistic.comment_count %>
       </li>
+      <li>
+        最終更新日時:<%= @statistic.updated_at %>
+      </li>
     </ul>
     <ul class="header-menus">
       <% if user_signed_in? %>

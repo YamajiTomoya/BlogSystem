@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2019_05_17_042214) do
     t.integer "user_count"
     t.integer "article_count"
     t.integer "comment_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def get_statistic
-    @statistic = Statistic.first
+    @statistic = StatisticDecorator.decorate(Statistic.first)
   end
 
   def configure_permitted_parameters
