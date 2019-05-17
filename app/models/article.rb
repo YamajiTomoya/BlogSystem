@@ -44,8 +44,8 @@ class Article < ApplicationRecord
   def self.check_reservation_post
     Article.all.find_each do |article|
       now = Time.zone.now
-      article.status = 10 if now >= article.post_reservation_at
-      article.save
+      article.status = 10 if now == article.post_reservation_at
+      article.saveS
     end
   end
 end
