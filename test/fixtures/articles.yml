@@ -2,13 +2,14 @@
 #
 # Table name: articles
 #
-#  id         :bigint           not null, primary key
-#  title      :string
-#  content    :string
-#  status     :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint
+#  id                  :bigint           not null, primary key
+#  title               :string
+#  content             :string
+#  status              :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :bigint
+#  post_reservation_at :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
