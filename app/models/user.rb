@@ -30,6 +30,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :user_statistics, dependent: :destroy
 
   # deviseでemailを不必要にする
   def email_required?

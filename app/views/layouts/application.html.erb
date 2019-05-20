@@ -35,6 +35,9 @@
         <%= link_to("Write", new_article_path) %>
       </li>
       <li>
+        <%= link_to("Statistics", user_statistics_path(current_user.username)) %>
+      </li>
+      <li>
         <%= link_to(current_user.username, user_page_path(current_user.username)) %>
       </li>
       <% else %>

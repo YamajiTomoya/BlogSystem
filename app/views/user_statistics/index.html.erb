@@ -1,0 +1,11 @@
+<p><%= link_to("Collect Statistics", user_statistic_path(current_user.username), method: :post) %></p>
+
+
+<%= @statistics.each do |statistic| %>
+<p><%= statistic.created_at %></p>
+<p>
+    記事数：<%= statistic.article_count %>&nbsp;
+    投稿数：<%= statistic.comment_count %>&nbsp;
+    <%= link_to("ダウンロード", user_statistic_download_path(current_user.username,statistic.id)) %>
+</p>
+<% end %>

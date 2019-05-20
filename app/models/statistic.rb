@@ -6,6 +6,8 @@
 #  user_count    :integer
 #  article_count :integer
 #  comment_count :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Statistic < ApplicationRecord
