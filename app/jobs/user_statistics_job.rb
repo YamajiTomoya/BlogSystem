@@ -1,6 +1,7 @@
 class UserStatisticsJob < ApplicationJob
   queue_as :default
 
+  # ユーザー統計情報を収集し、DB、csvファイルに保存
   def perform(user)
     user_statistic = user.user_statistics.build(status: 'making')
     user_statistic.save

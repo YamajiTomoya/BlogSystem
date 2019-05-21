@@ -1,3 +1,4 @@
+<%# jsからHTMLに差し込まれるコメント編集フォーム %>
 <%= form_with model: @comment, url: article_comment_path(@comment.id), local: true, method: :patch, class: "form-group" do |form| %>
 <p><%= I18n.t "edit_comment" %></p>
 <%= form.text_area :content, class: "form-control mx-auto"%>

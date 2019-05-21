@@ -16,6 +16,7 @@ class UserStatistic< ApplicationRecord
   belongs_to :user
   enum status: {completed: 10, making: 20 }
 
+  # ダウンロード用のcsvファイルを作成、途中で得た情報を返す
   def generate_csv
     user = User.find(self.user_id)
     username = user.username

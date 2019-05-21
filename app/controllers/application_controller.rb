@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     @statistic = StatisticDecorator.decorate(Statistic.first)
   end
 
+  # usernamewp用いてログインができるように
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[username email])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:username])

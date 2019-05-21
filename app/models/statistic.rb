@@ -11,6 +11,7 @@
 #
 
 class Statistic < ApplicationRecord
+  # システム統計情報の再収集
   def self.recollect_data
     if Statistic.all.size.zero?
       statistic = Statistic.new

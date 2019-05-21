@@ -65,6 +65,7 @@ class ArticlesController < ApplicationController
 
   private
 
+  # 現在のユーザーが記事の作成者かを確かめ、そうでなければredirectします
   def ensure_current_user
     @article = Article.find(params[:id])
     unless @article.write_by?(current_user)

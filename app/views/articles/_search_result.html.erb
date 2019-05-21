@@ -1,4 +1,5 @@
 <% articles.each do |article| %>
+<%# ページの管理者ならば全て、そうでなければ公開に設定されている記事のみを表示 %>
 <% if article.accessible?(current_user) %>
 <div class="card">
     <%= link_to(article_path(article.id)) do %>
@@ -20,6 +21,7 @@
 
     <div class="card-footer">
         <div class="article-list-menu">
+            <%# 記事作成者にのみ編集と削除のリンクを表示%>
             <% if article.write_by?(current_user) %>
             <%= link_to((I18n.t "edit"), edit_article_path(article.id)) %> &nbsp;
             <%= link_to((I18n.t "delete"), article_path(article.id), method: :delete, data: { confirm: (I18n.t "Do_you_want_to_delete_it?") }) %>

@@ -8,6 +8,7 @@ class UserStatisticsController < ApplicationController
     UserStatisticsJob.perform_later(current_user)
   end
 
+  # 作成したユーザー統計のcsvファイルをダウンロード
   def download
     user_statistic = UserStatistic.find(params[:id])
     download_file_name = user_statistic.csv_path

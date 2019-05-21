@@ -15,6 +15,7 @@
   <h3>Comments</h3>
 </div>
 
+<%# ログインユーザーのみがコメントを投稿できる %>
 <% if user_signed_in? %>
 <%= form_with model: [@article, @article.comments.build], local: true, class: "form-group" do |form| %>
 
@@ -39,6 +40,7 @@
       <%= comment.content %>
     </div>
     <div class="card-footer clearfix">
+      <%# 記事の管理者→全てのコメントを削除可能 コメントの投稿者→投稿したコメントに限り編集・削除の両方が可能 %>
       <div class="comment-menu">
         <% if comment.posted_by?(current_user) %>
         <%= link_to((I18n.t "edit"), edit_article_comment_path(@article.id, comment.id), remote: true) %> &nbsp;
