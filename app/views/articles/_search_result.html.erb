@@ -13,8 +13,7 @@
 
     <div class="card-body">
         <p class="content">
-            <%# 長い本文は途中までしか表示しない %>
-            <%= shrink_content(article.content) %>
+            <%= article.content %>
         </p>
     </div>
     <% end %>

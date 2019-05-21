@@ -8,4 +8,8 @@ class ArticleDecorator < Draper::Decorator
   def updated_at
     object.updated_at.strftime('%Y-%m-%d %H:%M')
   end
+
+  def content
+    object.content.size <= 150 ? object.content : object.content.slice(0, 150) + '...'
+  end
 end

@@ -4,8 +4,4 @@ module ArticlesHelper
 
     user.id == current_user.id ? 'My page' : "#{user.username}のページ"
   end
-
-  def shrink_content(content)
-    content.size <= 150 ? content : content.slice(0, 150) + '...'
-  end
 end

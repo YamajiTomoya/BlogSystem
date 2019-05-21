@@ -17,8 +17,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    @comment.update(comment_params)
-    if @comment.save
+    if @comment.update(comment_params)
       redirect_to(article_path(@comment.article_id), notice: (I18n.t 'edited_a_comment'))
     else
       redirect_to(article_path(@comment.article_id), alert: (I18n.t 'Please_input_a_comment'))
