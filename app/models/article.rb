@@ -28,16 +28,16 @@ class Article < ApplicationRecord
   validates :status, presence: true
   validates :user_id, presence: true
 
-  def author?(current_user)
-    if current_user.nil?
+  def write_by?(user)
+    if user.nil?
       false
     else
-      current_user.id == user_id
+      user.id == user_id
     end
   end
 
   def accessible?(current_user)
-    open? || author?(current_user)
+    open? || write_by?(current_user)
   end
 
   # 予約時間になった投稿を公開
