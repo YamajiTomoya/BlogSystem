@@ -40,7 +40,7 @@
     </div>
     <div class="card-footer clearfix">
       <div class="comment-menu">
-        <% if comment.poster?(current_user) %>
+        <% if comment.posted_by?(current_user) %>
         <%= link_to((I18n.t "edit"), edit_article_comment_path(@article.id, comment.id), remote: true) %> &nbsp;
         <% end %>
         <% if comment.deletable?(current_user) %>

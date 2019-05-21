@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
-    @article.status = 20 if @article.post_reservation_at.presence
+    @article.status = :not_open if @article.post_reservation_at.presence
     if @article.save
       redirect_to(user_page_path(current_user.username), notice: (I18n.t 'posted_an_article'))
     else

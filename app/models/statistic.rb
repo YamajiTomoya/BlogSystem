@@ -11,7 +11,7 @@
 #
 
 class Statistic < ApplicationRecord
-  def self.update
+  def self.recollect_data
     if Statistic.all.size.zero?
       statistic = Statistic.new
       statistic.save

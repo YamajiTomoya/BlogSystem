@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create]
+  before_action :authenticate_user!, only: %i[create, destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -28,12 +28,10 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     article = comment.article
-    # コメントのdelete権限を確認。外部からdeleteリクエストを投げられた場合の対策。
-    return unless current_user
 
     if current_user.id == comment.user_id || current_user.id == article.user_id
       comment.destroy
-      redirect_back(fallback_location: article_path(article.id), alert: (I18n.t 'deleted_a_comment'))
+      redirect_to(article_path(article), alert: (I18n.t 'deleted_a_comment'))
     end
   end
 
