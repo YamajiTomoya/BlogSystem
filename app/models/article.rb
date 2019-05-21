@@ -41,16 +41,16 @@ class Article < ApplicationRecord
   end
 
   # 予約時間になった投稿を公開
-  def self.check_reservation_post
-    Article.all.find_each do |article|
-      next unless article.post_reservation_at
+  def self.open_reserved_post
+    now = Time.zone.now
+    con = ActiveRecord::Base.connection
+    query = "SELECT * FROM articles WHERE ('#{now}' >= post_reservation_at);"
+    articles = Article.find_by_sql(query)
 
-      now = Time.zone.now
-      if now >= article.post_reservation_at
-        article.status = 10
-        article.post_reservation_at = nil
-        article.save
-      end
+    articles.each do |article|
+      article.status = :open
+      article.post_reservation_at = nil
+      article.save
     end
   end
 end

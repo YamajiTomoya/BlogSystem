@@ -4,9 +4,9 @@ set :environment, rails_env
 set :output, "#{Rails.root}/log/cron.log"
 
 every 1.minutes do
-  runner "Article.check_reservation_post"
+  runner "Article.open_reserved_post"
 end
 
 every 1.hours do
-  runner "Statistic.update"
+  runner "Statistic.recollect_data"
 end
