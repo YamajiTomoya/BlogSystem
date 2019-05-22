@@ -1,0 +1,19 @@
+<div class="heading">
+  <h2>LOGIN TO ADMIN PAGE</h2>
+</div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-group") do |f| %>
+<div class="field mx-auto">
+  <p><%= I18n.t "username" %></p>
+  <%= f.text_field :username, autofocus: true, class: "form-control" %>
+</div>
+
+<div class="field mx-auto">
+  <p><%= I18n.t "activerecord.attributes.user.password" %></p>
+  <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+</div>
+
+<div class="submit actions mx-auto">
+  <%= f.submit (I18n.t "login"), class: "form-control" %>
+</div>
+<% end %>

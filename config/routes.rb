@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#allocate'
+  get 'admin', to: 'admins#index'
+  devise_for :admins, only: [:sessions]
   devise_for :users, only: [:sessions, :password]
+
   as :user do
     get 'users/sign_up', to: 'devise/registrations#new', as: :new_user_registration
     post 'users', to: 'devise/registrations#create', as: :user_registration
