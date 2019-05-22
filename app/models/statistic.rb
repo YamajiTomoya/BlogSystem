@@ -18,6 +18,7 @@ class Statistic < ApplicationRecord
       statistic.save
     end
     statistic = Statistic.first
+    statistic.touch
     user_count = User.all.size
     article_count = Article.all.size
     comment_count = Comment.all.size
