@@ -43,7 +43,6 @@ class Article < ApplicationRecord
   # 予約時間になった投稿を公開
   def self.open_reserved_post
     now = Time.zone.now
-    con = ActiveRecord::Base.connection
     query = "SELECT * FROM articles WHERE ('#{now}' >= post_reservation_at);"
     articles = Article.find_by_sql(query)
 
