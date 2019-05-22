@@ -1,0 +1,28 @@
+ja:
+  articles:
+    index:
+      search: 検索
+      title_search: タイトル検索
+      date_search: 日付検索
+      clear: クリア
+
+    new:
+      reservation_post: 予約投稿
+      reservation_post_message: （設定時刻になると記事が公開されます。予約時点では非公開に設定されます。)
+      do_create: 投稿する
+
+    create:
+      posted_an_article: 記事を投稿しました。
+
+    edit:
+      do_update: 編集する
+
+    update:
+      edited_an_article: 記事を編集しました。
+
+    destroy:
+      deleted_an_article: 記事を削除しました。
+
+    show:
+      do_create: 投稿する
+      You_need_to_login_to_post_comments: コメントの投稿にはログインが必要です。

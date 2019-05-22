@@ -33,10 +33,8 @@ ja:
   password_reset_mail_2: もしもこのメールに心あたりがなければ、そのまま削除してくださいますようお願い致します。
   password_reset_mail_3: 上記のリンクにアクセスして新しいパスワードを作成するまで、パスワードは変更されませんのでご注意ください。
 
-  search: 検索
-  title_search: タイトル検索
-  date_search: 日付検索
-  clear: クリア
+  edit: 編集
+  delete: 削除
   Do_you_want_to_delete_it?: 削除しますか？
 
   title: タイトル
@@ -45,19 +43,12 @@ ja:
   status: 公開設定
   open: 公開
   not_open: 非公開
-  do_create: 投稿する
-  posted_an_article: 記事を投稿しました。
-  edit: 編集
-  do_update: 編集する
-  edited_an_article: 記事を編集しました。
-  delete: 削除
-  deleted_an_article: 記事を削除しました。
+
 
   posted_a_comment: コメントを投稿しました。
   edit_comment: コメントの編集
   edited_a_comment: コメントを編集しました。
   deleted_a_comment: コメントを削除しました。
   Please_input_a_comment: コメントを入力してください。
-  You_need_to_login_to_post_comments: コメントの投稿にはログインが必要です。
   You_do_not_have_the_authority: 権限がありません。
 

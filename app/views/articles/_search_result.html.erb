@@ -6,7 +6,7 @@
     <div class="card-header">
         <div class="image">
             <% if article.image.attached? %>
-            <%= image_tag article.image.variant(combine_options: {auto_orient: true, gravity: "center", resize: "1000x200^", crop: "1000x200+0+0"}) %>
+            <%= image_tag(article.image.variant(combine_options: {auto_orient: true, gravity: "center", resize: "1000x200^", crop: "1000x200+0+0"})) %>
             <% end %>
         </div>
         <h3 class="title"><%= article.title %></h3>

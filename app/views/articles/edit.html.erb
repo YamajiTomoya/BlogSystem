@@ -2,10 +2,10 @@
     <h3>Edit Article</h3>
 </div>
 
-<%= render partial: "layouts/error_messages", locals: {object: @check} %>
-<%= form_with model: @article, url: article_path(@article.id), local: true, method: :patch, class: "form-group" do |form| %>
-<%= render partial: "write_form", locals: {form: form}%>
+<%= render(partial: "layouts/error_messages", locals: {object: @check}) %>
+<%= form_with(model: @article, url: article_path(@article.id), local: true, method: :patch, class: "form-group") do |form| %>
+<%= render(partial: "write_form", locals: {form: form}) %>
 <div class="class mx-auto submit">
-    <%= form.submit (I18n.t("do_update")), class: "form-control"%>
+    <%= form.submit((t(".do_update")), class: "form-control") %>
 </div>
 <% end %>

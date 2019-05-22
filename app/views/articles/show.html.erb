@@ -17,17 +17,17 @@
 
 <%# ログインユーザーのみがコメントを投稿できる %>
 <% if user_signed_in? %>
-<%= form_with model: [@article, @article.comments.build], local: true, class: "form-group" do |form| %>
+<%= form_with(model: [@article, @article.comments.build], local: true, class: "form-group") do |form| %>
 
 <div class="comment-form mx-auto">
-  <%= form.text_area :content, class: "form-control" %>
+  <%= form.text_area(:content, class: "form-control") %>
 </div>
 <div class="submit mx-auto">
-  <%= form.submit (I18n.t "do_create"), class: "form-control" %>
+  <%= form.submit((t".do_create"), class: "form-control") %>
 </div>
 <% end %>
 <% else %>
-<p><%= I18n.t "You_need_to_login_to_post_comments" %></p>
+<p><%= t(".You_need_to_login_to_post_comments") %></p>
 <% end %>
 
 <% @comments.each_with_index do |comment, i| %>

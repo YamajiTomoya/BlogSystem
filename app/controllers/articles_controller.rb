@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.build(article_params)
     @article.status = :not_open if @article.post_reservation_at.presence
     if @article.save
-      redirect_to(user_page_path(current_user.username), notice: (I18n.t 'posted_an_article'))
+      redirect_to(user_page_path(current_user.username), notice: (t('.posted_an_article')))
     else
       render :new
     end
@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
 
     if @check.valid?
       @article.update(article_params)
-      redirect_to(user_page_path(current_user.username), notice: (I18n.t 'edited_an_article'))
+      redirect_to(user_page_path(current_user.username), notice: (t('.edited_an_article')))
     else
       @article.attributes.each do |key, _value|
         @article[key] = @check[key] if @check[key].presence
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to(user_page_path(current_user.username), notice: (I18n.t 'deleted_an_article'))
+    redirect_to(user_page_path(current_user.username), notice: (t'.deleted_an_article'))
   end
 
   private

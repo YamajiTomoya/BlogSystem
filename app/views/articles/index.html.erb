@@ -5,14 +5,14 @@
 </div>
 <div class="search">
   <div class="search-header">
-    <h4 class="mx-auto">+&nbsp;<%= I18n.t 'search' %>&nbsp;+</h4>
+    <h4 class="mx-auto">+&nbsp;<%= t(".search") %>&nbsp;+</h4>
   </div>
   <div class="search-item">
     <%= search_form_for(@search, url: user_page_path(@user.username), remote: true) do |form| %>
     <div class="serach-form mx-auto">
-      <p><%= I18n.t "title_search" %></p>
+      <p><%= t(".title_search") %></p>
       <p><%= form.search_field(:title_cont, class: "form-control search-form") %></p>
-      <p><%= I18n.t "date_search" %></p>
+      <p><%= t(".date_search") %></p>
       <p>
         <%= form.text_field(:created_at_gteq, class: "date-picker form-control search-form", autocomplete: "off") %>
         〜
@@ -25,7 +25,7 @@
     </div>
 
     <div class="submit reset_button actions mx-auto">
-      <%= form.button (I18n.t "clear"), type: :button, id: "clear-button", class: "form-control search-form" %>
+      <%= form.button((t(".clear")), type: :button, id: "clear-button", class: "form-control search-form") %>
     </div>
     <% end %>
   </div>
