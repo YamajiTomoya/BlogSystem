@@ -1,12 +1,20 @@
+require_relative '../models/user_statistics_supporter.rb'
 class UserStatisticsJob < ApplicationJob
   queue_as :default
 
   # ユーザー統計情報を収集し、DB、csvファイルに保存
-  def perform(user)
-    user_statistic = user.user_statistics.build(status: 'making')
-    user_statistic.save
+  def perform(user, aggregates)
+    # ActiveJobにはシンボルを渡せないので、ここで変換
+    aggregates = aggregates.map(&:to_sym)
 
-    article_count, comment_count, filepath = user_statistic.generate_csv
-    user_statistic.update(article_count: article_count, comment_count: comment_count, status: 'completed', csv_path: filepath)
+    user_statistic = UserStatisticsSupporter.new(user, aggregates)
+
+    aggregates.each do |aggregate|
+      user_statistic.send("calc_#{aggregate}")
+    end
+
+    user_statistic.set_csv_path
+    user_statistic.generate_csv
+    user_statistic.set_completed_status
   end
 end

@@ -1,11 +1,45 @@
-<p><%= link_to("Collect Statistics", user_statistic_path(current_user.username), method: :post) %></p>
+<div class="heading">
+    <h3>ユーザー統計情報取得ページ</h3>
+</div>
+
+<div id="aggregate" class="mx-auto">
+    <div class="aggragate-menu">
+        <h5>取得したい統計項目を選択してください</h5>
+        <%= form_with model: @user_statistics, url: user_statistic_path(current_user.username), local: true,
+    method: :post, class: "form-group" do |form| %>
+        <div class="aggregate-items">
+            <p>
+                <span class="aggregate-item">
+                    記事数:<%= form.check_box(:article_count, class: "checkbox") %>
+                </span>
+                <span class="aggregate-item">
+                    コメント数:<%= form.check_box(:comment_count, class: "checkbox") %>
+                </span>
+                <span class="aggregate-item">
+                    作成日時:<%= form.check_box(:updated_at, checked: true, class: "checkbox") %>
+                </span>
+            </p>
+        </div>
+        <div class="submit mx-auto">
+            <%= form.submit("統計を取得", class: "submit form-control mx-auto") %></p>
+        </div>
+        <% end %>
+    </div>
 
 
-<%= @statistics.each do |statistic| %>
-<p><%= statistic.created_at %></p>
-<p>
-    記事数：<%= statistic.article_count %>&nbsp;
-    投稿数：<%= statistic.comment_count %>&nbsp;
-    <%= link_to("ダウンロード", user_statistic_download_path(current_user.username,statistic.id)) %>
-</p>
-<% end %>
+    <% @statistics.each do |statistic| %>
+    <div class="card">
+        <div class="card-body">
+            <p><%= display_data(statistic).html_safe %></p>
+        </div>
+        <div class="card-footer">
+            <div class="data-list-menu">
+                <%= link_to("Download", user_statistic_download_path(current_user.username,statistic.id)) %>
+            </div>
+            <div class="data-list-info">
+                created: <%= statistic.created_at %>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>

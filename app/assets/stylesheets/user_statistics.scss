@@ -1,0 +1,75 @@
+#aggregate {
+    width: 70%;
+
+    .aggragate-menu {
+        .aggregate-items {
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .aggregate-item {
+            margin: 3px;
+
+            .checkbox {
+                vertical-align: 1px;
+                margin-left: 6px;
+            }
+        }
+
+        .submit {
+            width: 65%;
+        }
+    }
+
+    .card {
+        margin: 20px 0;
+
+        .title {
+            color: black;
+            text-decoration: none;
+            font-size: 26px;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        .content {
+            text-align: left;
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: lighter;
+        }
+
+        .card-body {
+            padding: 0;
+            text-align: left;
+
+            p {
+                margin: 10px;
+            }
+        }
+
+        .card-footer {
+            padding: 0;
+            font-size: 12px;
+
+            .data-list-menu {
+                padding: 5px 5px 5px 10px;
+                float: left;
+                text-align: left;
+            }
+
+            .data-list-info {
+                padding: 5px 10px 5px 5px;
+                float: right;
+                text-align: right;
+            }
+        }
+    }
+}
