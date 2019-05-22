@@ -7,9 +7,11 @@ class ArticlesController < ApplicationController
     @search = @user.articles.ransack(params[:q])
     @articles = @search.result.order(:id).page(params[:page]).per(3)
     @articles = ArticleDecorator.decorate_collection(@articles)
-    if params[:q].present?
-      render 'search_result'
-    end
+
+    # ajax通信のみ通る
+    return unless request.xhr?
+
+    render 'search_result'
   end
 
   def show
