@@ -1,5 +1,6 @@
 class UserStatisticsController < ApplicationController
   before_action :authenticate_user!, only: %i[index create download]
+  before_action :ensure_current_user, only: %i[index create download]
 
   def index
     @statistics = current_user.user_statistics.order(id: 'DESC')
@@ -27,5 +28,12 @@ class UserStatisticsController < ApplicationController
     user_statistic = UserStatistic.find(params[:id])
     download_file_name = user_statistic.csv_path
     send_file download_file_name
+  end
+
+  # 統計情報ページにアクセスできるのは本人のみ
+  def ensure_current_user
+    unless current_user.username == params[:username]
+      redirect_to(root_path, alert: (I18n.t 'You_do_not_have_the_authority'))
+    end
   end
 end
