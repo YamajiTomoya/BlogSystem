@@ -25,7 +25,7 @@
             <% end %>
         </div>
         <div class="article-list-info">
-            <% if article.post_reservation_at %>
+            <% if article.reserved? %>
             <span class="reserved"> reserved: <%= article.post_reservation_at %></span>
             <% else %>
             <span>

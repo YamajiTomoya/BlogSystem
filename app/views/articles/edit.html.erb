@@ -5,6 +5,22 @@
 <%= render(partial: "layouts/error_messages", locals: {object: @check}) %>
 <%= form_with(model: @article, url: article_path(@article.id), local: true, method: :patch, class: "form-group") do |form| %>
 <%= render(partial: "write_form", locals: {form: form}) %>
+<% if @article.post_reservation_at %>
+<%# 予約投稿機能 %>
+<div class="write-form mx-auto">
+    <p><%= form.radio_button(:status, "reserved") %> &nbsp; <%= t(".reservation_post") %></p>
+    <p><%= t(".reservation_post_message") %></p>
+    <%# date_time_picker %>
+    <div id="my-date-time-picker" class="input-group mx-auto" data-target-input="nearest">
+        <%= form.text_field(:post_reservation_at, id: "created_at", class: "form-control datepicker",
+       data: { target: '#created_at'}, disabled: true) %>
+        <div class="input-group-append" data-target="#created_at" data-toggle="datetimepicker">
+            <div id="my-date-time-picker-icon" class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+    </div>
+</div>
+<% end %>
+
 <div class="class mx-auto submit">
     <%= form.submit((t(".do_update")), class: "form-control") %>
 </div>

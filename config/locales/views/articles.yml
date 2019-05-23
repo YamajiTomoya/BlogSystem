@@ -16,6 +16,8 @@ ja:
       reserved_an_article: 記事を予約投稿しました。
 
     edit:
+      reservation_post: 予約投稿
+      reservation_post_message: （予約時間を変更できます。公開・非公開を選択した場合には予約はキャンセルされます。)
       do_update: 編集する
 
     update:

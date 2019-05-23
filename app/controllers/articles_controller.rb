@@ -44,6 +44,8 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
+    # 予約投稿をキャンセルしたら予約時間も消す
+    @article.post_reservation_at = nil unless @article.reserved?
 
     # 入力失敗時には、空の部分には元々持っていた値を入れ、編集した部分はそのまま残すようにします
     @check = @article.dup
