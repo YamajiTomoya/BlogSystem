@@ -19,7 +19,7 @@ class UserStatisticsSupporter
   # ダウンロード用のcsvファイルを作成
   def generate_csv
     headers = @aggregates.map { |aggregate| @convert_to_header[aggregate] }
-    data = @aggregates.map { |aggregate| @user_statistic.attributes[aggregate] }
+    data = @aggregates.map { |aggregate| @user_statistic[aggregate] }
 
     CSV.open(@user_statistic.csv_path, 'w') do |csv|
       csv << headers
