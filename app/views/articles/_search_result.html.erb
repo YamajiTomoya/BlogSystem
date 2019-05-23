@@ -1,6 +1,4 @@
 <% articles.each do |article| %>
-<%# ページの管理者ならば全て、そうでなければ公開に設定されている記事のみを表示 %>
-<% if article.accessible?(current_user) %>
 <div class="card">
     <%= link_to(article_path(article.id)) do %>
     <div class="card-header">
@@ -17,7 +15,6 @@
             <%= article.content %>
         </p>
     </div>
-    <% end %>
 
     <div class="card-footer">
         <div class="article-list-menu">

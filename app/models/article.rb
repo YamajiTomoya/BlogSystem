@@ -36,10 +36,6 @@ class Article < ApplicationRecord
     end
   end
 
-  def accessible?(current_user)
-    open? || write_by?(current_user)
-  end
-
   # 予約時間になった投稿を公開
   def self.open_reserved_post
     now = Time.zone.now

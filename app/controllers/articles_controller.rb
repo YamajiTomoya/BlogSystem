@@ -6,6 +6,8 @@ class ArticlesController < ApplicationController
     @user = User.find_by(username: params[:username])
     @search = @user.articles.ransack(params[:q])
     @articles = @search.result.order(:id).page(params[:page]).per(3)
+    # 非公開・投稿予約中の記事を見れるのは投稿者のみ
+    @articles = @articles.where(status: :open) if current_user != @user
     @articles = ArticleDecorator.decorate_collection(@articles)
 
     # ajax通信のみ通る
