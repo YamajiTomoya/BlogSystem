@@ -30,7 +30,8 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
-      redirect_to(user_page_path(current_user.username), notice: t('.posted_an_article'))
+      message = @article.reserved? ? t('.reserved_an_article') : t('.posted_an_article')
+      redirect_to(user_page_path(current_user.username), notice: message)
     else
       render :new
     end

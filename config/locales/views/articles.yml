@@ -13,6 +13,7 @@ ja:
 
     create:
       posted_an_article: 記事を投稿しました。
+      reserved_an_article: 記事を予約投稿しました。
 
     edit:
       do_update: 編集する
