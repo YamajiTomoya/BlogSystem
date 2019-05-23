@@ -8,11 +8,11 @@ $(function () {
         if ($search_item.hasClass('open')) {
             $search_item.removeClass('open');
             $search_item.slideUp();
-            $search_text.text('+' + nbsp + '検索' + nbsp + '+');
+            $search_text.text('＋' + nbsp + '検索' + nbsp + '＋');
         } else {
             $search_item.addClass('open');
             $search_item.slideDown();
-            $search_text.text('-' + nbsp + '検索' + nbsp + '-');
+            $search_text.text('ー' + nbsp + '検索' + nbsp + 'ー');
         }
     });
 });
