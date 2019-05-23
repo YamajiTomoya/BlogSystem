@@ -21,7 +21,7 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :image
 
-  enum status: { open: 10, not_open: 20 }
+  enum status: { open: 10, not_open: 20, reserved: 30 }
 
   validates :title, presence: true
   validates :content, presence: true
@@ -43,13 +43,13 @@ class Article < ApplicationRecord
   # 予約時間になった投稿を公開
   def self.open_reserved_post
     now = Time.zone.now
-    query = "SELECT * FROM articles WHERE ('#{now}' >= post_reservation_at);"
+    query = "SELECT * FROM articles WHERE (status = 30) AND ('#{now}' >= post_reservation_at);"
     articles = Article.find_by_sql(query)
 
     articles.each do |article|
       article.status = :open
       article.post_reservation_at = nil
-      article.save
+      article.save(touch: false) # updated_atは更新しない（created_atと同じまま）
     end
   end
 end

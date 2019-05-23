@@ -16,5 +16,10 @@
 //= require jquery-ui/widgets/datepicker
 //= require jquery-ui/i18n/datepicker-ja
 //= require jquery_ujs
+//= require popper
+//= require bootstrap-sprockets
 //= require bootstrap
+//= require moment
+//= require moment/ja.js
+//= require tempusdominus-bootstrap-4.js
 //= require_tree .

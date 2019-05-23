@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    # 非公開設定されているなら、権限確認
+    # openに設定されていないなら（非公開もしくは予約されているならば）権限確認
     ensure_current_user if @article.not_open?
     @comments = CommentDecorator.decorate_collection(@article.comments.order(:id))
   end
@@ -27,9 +27,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
-    @article.status = :not_open if @article.post_reservation_at.presence
     if @article.save
-      redirect_to(user_page_path(current_user.username), notice: (t('.posted_an_article')))
+      redirect_to(user_page_path(current_user.username), notice: t('.posted_an_article'))
     else
       render :new
     end
@@ -49,7 +48,7 @@ class ArticlesController < ApplicationController
 
     if @check.valid?
       @article.update(article_params)
-      redirect_to(user_page_path(current_user.username), notice: (t('.edited_an_article')))
+      redirect_to(user_page_path(current_user.username), notice: t('.edited_an_article'))
     else
       @article.attributes.each do |key, _value|
         @article[key] = @check[key] if @check[key].presence
@@ -62,7 +61,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    redirect_to(user_page_path(current_user.username), notice: (t'.deleted_an_article'))
+    redirect_to(user_page_path(current_user.username), notice: (t '.deleted_an_article'))
   end
 
   private
