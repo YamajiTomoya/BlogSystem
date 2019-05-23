@@ -9,14 +9,14 @@
   </div>
   <div class="search-item">
     <%= search_form_for(@search, url: user_page_path(@user.username), remote: true) do |form| %>
-    <div class="serach-form mx-auto">
+    <div class="search-form mx-auto">
       <p><%= t(".title_search") %></p>
-      <p><%= form.search_field(:title_cont, class: "form-control search-form") %></p>
+      <p><%= form.search_field(:title_cont, class: "form-control") %></p>
       <p><%= t(".date_search") %></p>
       <p>
-        <%= form.text_field(:created_at_gteq, class: "date-picker form-control search-form", autocomplete: "off") %>
+        <%= form.text_field(:created_at_gteq, class: "date-picker form-control", autocomplete: "off") %>
         〜
-        <%= form.text_field(:created_at_lteq, class: "date-picker form-control search-form", autocomplete: "off") %>
+        <%= form.text_field(:created_at_lteq, class: "date-picker form-control", autocomplete: "off") %>
       </p>
     </div>
     <%# ユーザーからは見えない検索フォーム。jsから自動でクリックされる。%>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="submit reset_button actions mx-auto">
-      <%= form.button((t(".clear")), type: :button, id: "clear-button", class: "form-control search-form") %>
+      <%= form.button((t(".clear")), type: :button, id: "clear-button", class: "form-control") %>
     </div>
     <% end %>
   </div>
