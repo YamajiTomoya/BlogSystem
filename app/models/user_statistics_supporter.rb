@@ -1,13 +1,10 @@
 require 'csv'
 
 class UserStatisticsSupporter
-  def initialize(user, aggregates)
+  def initialize(id, user, aggregates)
     @user = user
     @aggregates = aggregates
-
-    @user_statistic = user.user_statistics.build
-    @user_statistic.status = :making
-    @user_statistic.save
+    @user_statistic = UserStatistic.find(id)
 
     @convert_to_header = {
       article_count: '記事数',

@@ -1,6 +1,8 @@
 module UserStatisticsHelper
   # 存在する統計情報のみ表示
   def display_data(user_statistic)
+    return '作成中...' if user_statistic.making?
+
     # attributesのkeyをわざわざSymbolにしないためにこの記法を使っている
     convert_to_legend = {
       'article_count' => '記事数',

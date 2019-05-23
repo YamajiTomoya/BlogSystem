@@ -3,11 +3,13 @@ class UserStatisticsJob < ApplicationJob
   queue_as :default
 
   # ユーザー統計情報を収集し、DB、csvファイルに保存
-  def perform(user, aggregates)
+  def perform(id, user, aggregates)
     # ActiveJobにはシンボルを渡せないので、ここで変換
     aggregates = aggregates.map(&:to_sym)
+    user_statistic = UserStatisticsSupporter.new(id, user, aggregates)
 
-    user_statistic = UserStatisticsSupporter.new(user, aggregates)
+    # 時間がかかる処理を再現するため10秒眠らせる
+    sleep(10)
 
     aggregates.each do |aggregate|
       user_statistic.send("calc_#{aggregate}")
