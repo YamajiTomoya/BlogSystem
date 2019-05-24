@@ -40,7 +40,6 @@ $(function () {
     $search_form.on('keyup change', function () {
         update_search_params();
         ajaxPost(search_params);
-        console.log(search_params);
     })
 
     // フォームを空にして、パラメータ更新。ajaxに渡す
