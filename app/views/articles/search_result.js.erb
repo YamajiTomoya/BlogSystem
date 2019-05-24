@@ -1,3 +1,3 @@
-<%# 文字入力を検知(js)→検索ボックスを自動クリック(js)→indexアクション内で検索結果を入手、ajaxのためこのファイルを呼ぶ(controller)→
+<%# 文字入力を検知(js)→検索用パラメータを作りajaxでindexに渡す(js)→indexアクション内で検索結果を入手、ajaxのためこのファイルを呼ぶ(controller)→
 検索結果を部分テンプレートにパス(js.erb)した結果をindex viewのsearch-resultブロックに上書き %>
 $('#search-result').html("<%= j(render partial: 'search_result', locals: { articles: @articles }) %>");

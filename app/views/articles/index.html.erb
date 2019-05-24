@@ -19,11 +19,6 @@
         <%= form.text_field(:created_at_lteq, class: "date-picker form-control", autocomplete: "off") %>
       </p>
     </div>
-    <%# ユーザーからは見えない検索フォーム。jsから自動でクリックされる。%>
-    <div class="hidden">
-      <%= form.submit((I18n.t "search"), id: "search-submit", class: "form-control") %>
-    </div>
-
     <div class="submit reset_button actions mx-auto">
       <%= form.button((t(".clear")), type: :button, id: "clear-button", class: "form-control") %>
     </div>
