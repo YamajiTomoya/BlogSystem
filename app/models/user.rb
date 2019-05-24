@@ -43,6 +43,7 @@ class User < ApplicationRecord
 
   def page_owner?(current_user)
     return false unless current_user
-    current_user.username == self.username ? true : false
+
+    current_user.username == username
   end
 end
