@@ -12,9 +12,10 @@ class UserStatisticsController < ApplicationController
     @user_statistic.status = :making
     @user_statistic.save
 
+    # 集計する項目を取得
     aggregates = []
-    params.each do |key, value|
-      aggregates.push(key) if (value == '1') && (key != 'username')
+    params[:aggregates].each do |key, value|
+      aggregates.push(key) if value == '1'
     end
 
     UserStatisticsJob.perform_later(@user_statistic.id, current_user, aggregates)

@@ -5,8 +5,8 @@
 <div id="aggregate" class="mx-auto">
     <div class="aggragate-menu">
         <h5>取得したい統計項目を選択してください</h5>
-        <%= form_with model: @user_statistics, url: user_statistic_path(current_user.username), local: true,
-    method: :post, class: "form-group" do |form| %>
+        <%= form_with(model: @user_statistics, url: user_statistic_path(current_user.username), local: true,
+    method: :post, scope: "aggregates", class: "form-group") do |form| %>
         <div class="aggregate-items">
             <p>
                 <span class="aggregate-item">
@@ -16,7 +16,7 @@
                     コメント数:<%= form.check_box(:comment_count, class: "checkbox") %>
                 </span>
                 <span class="aggregate-item">
-                    作成日時:<%= form.check_box(:updated_at, checked: true, class: "checkbox") %>
+                    作成日時:<%= form.check_box(:created_at, checked: true, class: "checkbox") %>
                 </span>
             </p>
         </div>
