@@ -40,4 +40,9 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
+
+  def page_owner?(current_user)
+    return false unless current_user
+    current_user.username == self.username ? true : false
+  end
 end

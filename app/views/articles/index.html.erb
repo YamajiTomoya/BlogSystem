@@ -14,10 +14,17 @@
       <p><%= form.search_field(:title_cont, class: "form-control") %></p>
       <p><%= t(".date_search") %></p>
       <p>
-        <%= form.text_field(:created_at_gteq, class: "date-picker form-control", autocomplete: "off") %>
+        <%= form.search_field(:created_at_gteq, class: "date-picker form-control", autocomplete: "off") %>
         〜
-        <%= form.text_field(:created_at_lteq, class: "date-picker form-control", autocomplete: "off") %>
+        <%= form.search_field(:created_at_lteq, class: "date-picker form-control", autocomplete: "off") %>
       </p>
+      <% if @user.page_owner?(current_user) %>
+      <p>
+        <span>公開中:<%= form.check_box(:status_eq_any, { multiple: true }, 10, nil) %></span>
+        <span>非公開:<%= form.check_box(:status_eq_any, { multiple: true }, 20, nil) %></span>
+        <span>予約投稿:<%= form.check_box(:status_eq_any, { multiple: true }, 30, nil) %></span>
+      </p>
+      <% end %>
     </div>
     <div class="submit reset_button actions mx-auto">
       <%= form.button((t(".clear")), type: :button, id: "clear-button", class: "form-control") %>
