@@ -38,9 +38,7 @@ class Article < ApplicationRecord
 
   # 予約時間になった投稿を公開
   def self.open_reserved_post
-    now = Time.zone.now
-    query = "SELECT * FROM articles WHERE (status = 30) AND ('#{now}' >= post_reservation_at);"
-    articles = Article.find_by_sql(query)
+    articles = Article.where('post_reservation_at <= ?', Time.zone.now)
 
     articles.each do |article|
       article.status = :open
