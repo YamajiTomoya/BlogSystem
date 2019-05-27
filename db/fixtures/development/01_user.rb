@@ -5,7 +5,7 @@ USER_NUM = 10
     s.id = i
     fake_username = Faker::Name.first_name
     s.username = fake_username
-    s.email = "#{fake_username}@gmail.com"
+    s.email = "#{fake_username}@example.com"
     s.password = 'xxxxxxxxxx'
   end
 end
