@@ -1,4 +1,4 @@
-class AdminsController < ApplicationController
+class AdminsController < AdminsApplicationController
   def index
     # 非ログインならログインページに飛ばす
     redirect_to(new_admin_session_path) unless current_admin

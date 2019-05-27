@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BlogSystem</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+    <header>
+        <h1 id="logo">BlogSystem</h1>
+        <ul class="header-menus">
+            <% if admin_signed_in? %>
+            <li>
+                <%= link_to("Logout", destroy_admin_session_path, {method: :delete}) %>
+            </li>
+            <% end %>
+        </ul>
+        <div class="clearfix"></div>
+    </header>
+
+    <% if alert || flash[:error] %>
+    <div class="alert alert-danger mx-auto" role="alert">
+        <span class="alert"><%= alert %></span>
+        <%= flash[:error] %>
+    </div>
+    <% end %>
+
+    <% if flash[:notice] %>
+    <div class="alert alert-success mx-auto" role="alert">
+        <%= flash[:notice] %>
+    </div>
+    <% end %>
+
+    <div class="container">
+        <%= yield %>
+    </div>
+</body>
+
+</html>
