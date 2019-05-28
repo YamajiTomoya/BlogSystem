@@ -22,7 +22,7 @@ class UserStatisticsData
   # csvフォーマットされたデータを生成
   def to_csv
     user_statistic_tranlations = I18n.t('activerecord.attributes.user_statistics.')
-    headers = @aggregates.map { |aggregate| user_statistic_tranlations[aggregate] }
+    headers = @aggregates.map { |aggregate| user_statistic_tranlations[aggregate.to_sym] }
     csv_data = CSV.generate do |csv|
       csv << headers
       csv << @data.values

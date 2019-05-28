@@ -14,8 +14,6 @@ class UserStatisticsJob < ApplicationJob
     us_data.generate_data
 
     # データベースを更新、保存時にcsvファイル作成が走る
-    us.status = :completed
-    us.csv_data = us_data.to_csv
-    us.update(us_data.data)
+    us.update(status: :completed, csv_data: us_data.to_csv, start_aggregating_at: us_data.data[:start_aggregating_at])
   end
 end

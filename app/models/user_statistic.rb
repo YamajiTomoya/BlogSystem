@@ -3,8 +3,7 @@
 # Table name: user_statistics
 #
 #  id                   :bigint           not null, primary key
-#  article_count        :integer
-#  comment_count        :integer
+#  csv_data             :text
 #  csv_path             :string
 #  start_aggregating_at :datetime
 #  status               :integer
@@ -18,7 +17,6 @@
 #
 
 class UserStatistic < ApplicationRecord
-  attr_accessor :csv_data
   before_save :save_csv_file
   belongs_to :user
   enum status: { completed: 10, making: 20 }
@@ -39,7 +37,6 @@ class UserStatistic < ApplicationRecord
     end
 
     # レコードの更新
-    self.csv_data = nil
     self.csv_path = csv_path
   end
 end
