@@ -2,13 +2,19 @@
 #
 # Table name: user_statistics
 #
-#  id            :bigint           not null, primary key
-#  user_id       :bigint
-#  status        :integer
-#  article_count :integer
-#  comment_count :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                   :bigint           not null, primary key
+#  article_count        :integer
+#  comment_count        :integer
+#  csv_path             :string
+#  start_aggregating_at :datetime
+#  status               :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :bigint
+#
+# Indexes
+#
+#  index_user_statistics_on_user_id  (user_id)
 #
 
 class UserStatistic < ApplicationRecord
