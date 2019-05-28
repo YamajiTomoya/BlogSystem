@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       article: 記事
+      user_statistics: ユーザー統計情報
     attributes:
       user:
         username: ユーザーネーム
@@ -15,6 +16,12 @@ ja:
         title: タイトル
         content: 本文
         status: 公開設定
+
+      user_statistics:
+        article_count: 記事数
+        comment_count: コメント数
+        start_aggregating_at: '集計開始時刻'
+
 
   username: ユーザーネーム
   email: メールアドレス
