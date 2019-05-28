@@ -12,7 +12,7 @@
 
     <div class="card-body">
         <p class="content">
-            <%= article.content %>
+            <%= article.shrink_content %>
         </p>
     </div>
 
@@ -26,11 +26,11 @@
         </div>
         <div class="article-list-info">
             <% if article.reserved? %>
-            <span class="reserved"> reserved: <%= article.post_reservation_at %></span>
+            <span class="reserved"> reserved: <%= article.post_reservation_at_formatted %></span>
             <% else %>
             <span>
-                created: <%= article.created_at %> &nbsp;
-                updated: <%= article.updated_at%> &nbsp;
+                created: <%= article.created_at_formatted %> &nbsp;
+                updated: <%= article.updated_at_formatted %> &nbsp;
                 Comment(<%= article.comments.count %>)
             </span>
             <% end %>
