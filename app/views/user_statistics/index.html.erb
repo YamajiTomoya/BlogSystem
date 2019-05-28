@@ -15,9 +15,6 @@
                 <span class="aggregate-item">
                     コメント数:<%= form.check_box(:comment_count, class: "checkbox") %>
                 </span>
-                <span class="aggregate-item">
-                    作成日時:<%= form.check_box(:created_at, checked: true, class: "checkbox") %>
-                </span>
             </p>
         </div>
         <div class="submit mx-auto">
@@ -39,7 +36,7 @@
             </div>
             <% end %>
             <div class="data-list-info">
-                created: <%= statistic.created_at %>
+                <%= statistic.show_datetime_status_based %>
             </div>
         </div>
     </div>
