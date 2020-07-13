@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  # ここからログインの有無によってユーザーページかログインページか振り分け
+  # ここからログインの有無によってユーザーページかログインページか振り分け*
   def allocate
     if current_user
       redirect_to(user_page_path(current_user.username))
